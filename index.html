@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kab Khao — Pre-Opening Master Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   KAB KHAO — DESIGN SYSTEM
+   Brand: Orange #E8651A · Green #1B4D35 · Crimson #9B1C2E
+   Pink #E8639A · Yellow #E8D44D · Cream #FDF6E3
+═══════════════════════════════════════════════ */
+:root {
+  --orange:#E8651A; --green:#1B4D35; --crimson:#9B1C2E;
+  --pink:#E8639A; --yellow:#E8D44D; --cream:#FDF6E3;
+  --dark:#0F0D09; --ink:#1C160E; --mid:#2A1F12;
+  --muted:rgba(253,246,227,.5); --subtle:rgba(253,246,227,.08);
+  --border:rgba(232,101,26,.15);
+  --f-display:'Playfair Display',serif;
+  --f-serif:'Instrument Serif',serif;
+  --f-mono:'JetBrains Mono',monospace;
+  --f-body:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:var(--f-body);background:var(--dark);color:var(--cream);overflow-x:hidden;line-height:1.6;}
+
+
+/* ── LANGUAGE TOGGLE ── */
+.lang-toggle{position:fixed;bottom:24px;right:24px;z-index:2000;
+  display:flex;border-radius:8px;overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);border:1px solid var(--border);}
+.lang-btn{background:var(--ink);color:var(--muted);border:none;
+  padding:10px 20px;font-family:var(--f-mono);font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.lang-btn:hover{color:var(--cream);}
+.lang-btn.active{background:var(--orange);color:var(--dark);font-weight:700;}
+[data-lang="es"] .en,[data-lang="en"] .es{display:none;}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:var(--ink);}
+::-webkit-scrollbar-thumb{background:var(--orange);border-radius:2px;}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(15,13,9,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:0;padding:0 32px;height:56px;}
+.nav-logo{font-family:var(--f-display);font-size:20px;color:var(--orange);
+  letter-spacing:.05em;white-space:nowrap;margin-right:32px;
+  padding-right:32px;border-right:1px solid var(--border);}
+.nav-logo sub{font-family:var(--f-mono);font-size:9px;letter-spacing:3px;
+  color:var(--muted);display:block;font-style:normal;margin-top:-4px;}
+.nav-links{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;flex:1;}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-a{font-family:var(--f-mono);font-size:10px;letter-spacing:2px;
+  color:var(--muted);text-decoration:none;text-transform:uppercase;
+  padding:0 16px;height:56px;display:flex;align-items:center;
+  border-right:1px solid var(--border);transition:color .2s,background .2s;
+  white-space:nowrap;}
+.nav-a:hover{color:var(--orange);background:rgba(232,101,26,.06);}
+.nav-progress{margin-left:auto;display:flex;align-items:center;gap:12px;
+  padding-left:24px;border-left:1px solid var(--border);}
+.nav-pct{font-family:var(--f-mono);font-size:11px;color:var(--orange);}
+.nav-bar-wrap{width:80px;height:3px;background:var(--subtle);border-radius:2px;}
+.nav-bar-fill{height:100%;width:0%;background:var(--orange);border-radius:2px;transition:width .4s;}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;place-items:center;
+  background:var(--green);position:relative;overflow:hidden;
+  padding:100px 40px 60px;}
+.hero-grain{position:absolute;inset:0;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:128px 128px;}
+.hero-glow-a{position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,101,26,.22) 0%,transparent 70%);
+  top:-100px;left:-100px;pointer-events:none;}
+.hero-glow-b{position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(155,28,46,.18) 0%,transparent 70%);
+  bottom:-50px;right:-50px;pointer-events:none;}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:860px;}
+.hero-eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:6px;
+  color:var(--yellow);text-transform:uppercase;margin-bottom:28px;opacity:.8;}
+.hero-title{font-family:var(--f-display);font-size:clamp(80px,14vw,160px);
+  color:var(--orange);line-height:.88;letter-spacing:-2px;
+  text-shadow:0 0 120px rgba(232,101,26,.35);}
+.hero-thai{font-size:clamp(16px,2.5vw,24px);letter-spacing:8px;
+  color:rgba(253,246,227,.6);margin-top:16px;font-family:var(--f-mono);
+  text-transform:uppercase;}
+.hero-desc{margin-top:36px;font-size:16px;color:rgba(253,246,227,.7);
+  line-height:1.9;max-width:520px;margin-left:auto;margin-right:auto;
+  font-family:var(--f-serif);font-size:18px;}
+.hero-stats{display:flex;gap:0;margin-top:56px;border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;background:rgba(0,0,0,.2);max-width:680px;
+  margin-left:auto;margin-right:auto;}
+.hero-stat{flex:1;padding:24px 20px;border-right:1px solid var(--border);text-align:center;}
+.hero-stat:last-child{border-right:none;}
+.hero-stat-n{font-family:var(--f-display);font-size:clamp(22px,3vw,32px);
+  color:var(--yellow);line-height:1.1;}
+.hero-stat-l{font-family:var(--f-mono);font-size:9px;letter-spacing:2px;
+  color:var(--muted);text-transform:uppercase;margin-top:6px;line-height:1.4;}
+.hero-progress{margin-top:40px;max-width:480px;margin-left:auto;margin-right:auto;}
+.hero-prog-bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;}
+.hero-prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--yellow),var(--orange));
+  border-radius:2px;transition:width .6s ease;}
+.hero-prog-label{font-family:var(--f-mono);font-size:9px;letter-spacing:3px;
+  color:var(--muted);text-transform:uppercase;margin-top:10px;text-align:right;}
+
+/* ── ALERT BANNER ── */
+.alert-banner{background:var(--crimson);padding:14px 32px;
+  display:flex;align-items:center;gap:16px;}
+.alert-icon{font-size:18px;flex-shrink:0;}
+.alert-text{font-family:var(--f-mono);font-size:11px;letter-spacing:1.5px;
+  color:var(--cream);line-height:1.6;}
+.alert-text strong{color:var(--yellow);}
+
+/* ── SECTIONS ── */
+.section{max-width:1160px;margin:0 auto;padding:80px 40px;}
+.section-sep{height:1px;background:linear-gradient(90deg,var(--orange),transparent);
+  margin:0;opacity:.3;}
+.section-hd{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;
+  margin-bottom:56px;}
+.section-num{font-family:var(--f-display);font-size:80px;color:var(--orange);
+  opacity:.18;line-height:1;user-select:none;}
+.section-hd-text{}
+.section-title{font-family:var(--f-display);font-size:clamp(32px,4vw,52px);
+  color:var(--cream);line-height:1;letter-spacing:-.5px;}
+.section-sub{font-family:var(--f-mono);font-size:10px;letter-spacing:3px;
+  color:var(--orange);text-transform:uppercase;margin-top:8px;}
+
+/* ── CARDS ── */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+.card{background:var(--subtle);border:1px solid var(--border);border-radius:10px;
+  padding:28px;transition:border-color .25s,transform .25s;}
+.card:hover{border-color:rgba(232,101,26,.4);transform:translateY(-2px);}
+.card-icon{font-size:24px;margin-bottom:14px;}
+.card-title{font-family:var(--f-display);font-size:17px;color:var(--orange);
+  margin-bottom:10px;}
+.card-body{font-size:13px;color:var(--muted);line-height:1.75;}
+.card-accent{border-top:3px solid var(--orange);}
+.card-green{border-top:3px solid var(--green);}
+.card-crimson{border-top:3px solid var(--crimson);}
+
+/* ── INSIGHT BLOCKS ── */
+.insight{padding:20px 24px;border-radius:8px;margin:24px 0;display:flex;gap:16px;align-items:flex-start;}
+.insight-warning{background:rgba(155,28,46,.15);border-left:3px solid var(--crimson);}
+.insight-tip{background:rgba(27,77,53,.2);border-left:3px solid #4CAF50;}
+.insight-standard{background:rgba(232,101,26,.1);border-left:3px solid var(--orange);}
+.insight-label{font-family:var(--f-mono);font-size:9px;letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:6px;}
+.insight-warning .insight-label{color:var(--crimson);}
+.insight-tip .insight-label{color:#4CAF50;}
+.insight-standard .insight-label{color:var(--orange);}
+.insight-body{font-size:13px;color:rgba(253,246,227,.8);line-height:1.75;}
+
+/* ── PHASES / TASKS ── */
+.phases-wrap{display:flex;flex-direction:column;gap:40px;}
+.phase{border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.phase-head{padding:24px 28px;cursor:pointer;display:flex;align-items:center;
+  gap:16px;border-bottom:1px solid var(--border);}
+.phase-head:hover{background:rgba(232,101,26,.04);}
+.phase-badge{font-family:var(--f-mono);font-size:9px;letter-spacing:3px;
+  text-transform:uppercase;padding:5px 12px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.ph1{background:var(--crimson);color:var(--cream);}
+.ph2{background:var(--orange);color:var(--dark);}
+.ph3{background:var(--green);color:var(--cream);}
+.ph4{background:var(--pink);color:var(--dark);}
+.ph5{background:var(--yellow);color:var(--dark);}
+.phase-head-main{flex:1;}
+.phase-head-title{font-family:var(--f-display);font-size:22px;color:var(--cream);}
+.phase-head-dates{font-family:var(--f-mono);font-size:10px;color:var(--orange);
+  letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+.phase-prog-wrap{width:100px;flex-shrink:0;text-align:right;}
+.phase-prog-bar{height:3px;background:var(--subtle);border-radius:2px;margin-top:4px;overflow:hidden;}
+.phase-prog-fill{height:100%;width:0%;background:var(--orange);transition:width .3s;}
+.phase-prog-pct{font-family:var(--f-mono);font-size:10px;color:var(--orange);}
+.phase-body{padding:0 28px 24px;}
+.phase-goal-text{font-size:13px;color:var(--muted);line-height:1.8;padding:20px 0;
+  border-bottom:1px solid var(--border);margin-bottom:16px;}
+
+/* ── TASK ROWS ── */
+.task-list{display:flex;flex-direction:column;gap:6px;}
+.task-row{display:flex;align-items:flex-start;gap:12px;
+  padding:12px 16px;border-radius:8px;
+  border:1px solid transparent;transition:background .2s,border-color .2s;cursor:pointer;}
+.task-row:hover{background:rgba(232,101,26,.05);border-color:var(--border);}
+.task-row.checked{opacity:.55;}
+.task-row.checked .task-text{text-decoration:line-through;color:var(--muted);}
+.task-code{font-family:var(--f-mono);font-size:9px;color:var(--orange);
+  opacity:.6;min-width:52px;padding-top:3px;letter-spacing:.5px;flex-shrink:0;}
+.task-check-box{width:18px;height:18px;border:1.5px solid rgba(232,101,26,.35);
+  border-radius:4px;flex-shrink:0;margin-top:2px;display:grid;place-items:center;
+  transition:all .2s;}
+.task-row:hover .task-check-box{border-color:var(--orange);}
+.task-row.checked .task-check-box{background:var(--orange);border-color:var(--orange);}
+.task-row.checked .task-check-box::after{content:'✓';font-size:10px;color:var(--dark);font-weight:700;}
+.task-content{flex:1;min-width:0;}
+.task-text{font-size:13px;color:var(--cream);line-height:1.5;}
+.task-meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;}
+.task-owner{font-family:var(--f-mono);font-size:9px;letter-spacing:1px;
+  color:var(--muted);background:rgba(253,246,227,.06);
+  padding:2px 8px;border-radius:3px;}
+.task-priority{font-family:var(--f-mono);font-size:9px;letter-spacing:1px;
+  padding:2px 8px;border-radius:3px;}
+.p-crit{background:rgba(155,28,46,.3);color:#ff8080;}
+.p-high{background:rgba(232,101,26,.2);color:var(--orange);}
+.p-med{background:rgba(232,212,77,.15);color:var(--yellow);}
+.p-low{background:rgba(253,246,227,.06);color:var(--muted);}
+
+/* ── TEAM MAP ── */
+.org-section{margin-bottom:40px;}
+.org-section-title{font-family:var(--f-mono);font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--orange);margin-bottom:16px;
+  padding-bottom:8px;border-bottom:1px solid var(--border);}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
+.team-card{background:var(--subtle);border:1px solid var(--border);border-radius:10px;
+  padding:18px;transition:border-color .2s;}
+.team-card:hover{border-color:rgba(232,101,26,.35);}
+.team-card.ext{border-style:dashed;opacity:.75;}
+.team-card.ext:hover{opacity:1;}
+.team-init{width:38px;height:38px;border-radius:8px;background:var(--orange);
+  display:grid;place-items:center;font-family:var(--f-display);font-size:13px;
+  color:var(--dark);font-weight:700;margin-bottom:12px;flex-shrink:0;}
+.team-init.green{background:var(--green);color:var(--cream);}
+.team-init.crimson{background:var(--crimson);color:var(--cream);}
+.team-init.pink{background:var(--pink);color:var(--dark);}
+.team-init.yellow{background:var(--yellow);color:var(--dark);}
+.team-init.ext{background:var(--subtle);border:1px solid var(--border);color:var(--muted);}
+.team-name{font-family:var(--f-display);font-size:15px;color:var(--cream);margin-bottom:3px;}
+.team-role{font-family:var(--f-mono);font-size:9px;letter-spacing:1.5px;
+  color:var(--orange);text-transform:uppercase;margin-bottom:8px;}
+.team-scope{font-size:11.5px;color:var(--muted);line-height:1.6;}
+
+/* ── FINANCIAL TABLE ── */
+.fin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:24px 0;}
+.fin-card{border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;}
+.fin-val{font-family:var(--f-display);font-size:28px;color:var(--orange);margin:8px 0;}
+.fin-label{font-family:var(--f-mono);font-size:9px;letter-spacing:2px;
+  color:var(--muted);text-transform:uppercase;}
+.fin-note{font-size:11px;color:var(--muted);margin-top:4px;font-style:italic;}
+.fin-table{width:100%;border-collapse:collapse;font-size:13px;margin:20px 0;}
+.fin-table th{font-family:var(--f-mono);font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--orange);padding:10px 14px;
+  border-bottom:2px solid var(--border);text-align:left;}
+.fin-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--cream);}
+.fin-table tr:last-child td{border-bottom:none;}
+.fin-table tr:hover td{background:rgba(232,101,26,.04);}
+.fin-total{font-weight:600;color:var(--yellow)!important;}
+.fin-tag{font-family:var(--f-mono);font-size:9px;padding:2px 6px;border-radius:3px;}
+.fin-tag-food{background:rgba(27,77,53,.3);color:#6fcf6f;}
+.fin-tag-labor{background:rgba(232,101,26,.2);color:var(--orange);}
+.fin-tag-other{background:rgba(253,246,227,.06);color:var(--muted);}
+
+/* ── COMPETITIVE TABLE ── */
+.comp-table{width:100%;border-collapse:collapse;font-size:13px;}
+.comp-table th{font-family:var(--f-mono);font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--orange);padding:10px 14px;
+  border-bottom:2px solid var(--border);text-align:left;}
+.comp-table td{padding:12px 14px;border-bottom:1px solid rgba(253,246,227,.06);
+  vertical-align:top;color:rgba(253,246,227,.8);}
+.comp-table tr:hover td{background:rgba(232,101,26,.03);}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;
+  font-family:var(--f-mono);font-size:9px;letter-spacing:1px;}
+.badge-direct{background:rgba(155,28,46,.3);color:#ff8080;}
+.badge-indirect{background:rgba(232,212,77,.15);color:var(--yellow);}
+.badge-ref{background:rgba(27,77,53,.3);color:#6fcf6f;}
+.threat-high{color:#ff8080;}
+.threat-med{color:var(--orange);}
+.threat-low{color:var(--yellow);}
+
+/* ── KPI GRID ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+.kpi-card{border:1px solid var(--border);border-radius:10px;padding:22px;
+  border-left:3px solid var(--orange);}
+.kpi-val{font-family:var(--f-display);font-size:28px;color:var(--orange);margin:8px 0;}
+.kpi-name{font-family:var(--f-mono);font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--cream);}
+.kpi-owner{font-size:11px;color:var(--muted);margin-top:4px;}
+
+/* ── TRACKER ── */
+.tracker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
+.tracker-card{background:var(--subtle);border:1px solid var(--border);border-radius:10px;padding:18px;}
+.tracker-label{font-family:var(--f-mono);font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.tracker-bar{height:6px;background:rgba(253,246,227,.08);border-radius:3px;overflow:hidden;margin-bottom:8px;}
+.tracker-fill{height:100%;width:0%;border-radius:3px;transition:width .4s ease;}
+.tf-1{background:var(--crimson);}
+.tf-2{background:var(--orange);}
+.tf-3{background:var(--green);}
+.tf-4{background:var(--pink);}
+.tf-5{background:var(--yellow);}
+.tf-overall{background:linear-gradient(90deg,var(--yellow),var(--orange));}
+.tracker-pct{font-family:var(--f-display);font-size:22px;color:var(--orange);}
+
+/* ── MONDAY REPORT ── */
+.report-template{background:rgba(27,77,53,.08);border:1px solid rgba(27,77,53,.3);
+  border-radius:10px;padding:28px;font-family:var(--f-mono);font-size:12px;line-height:2;}
+.report-section{color:var(--orange);font-weight:600;margin-top:16px;letter-spacing:2px;}
+.report-body{color:var(--muted);}
+
+/* ── FIREBASE SECTION ── */
+.code-block{background:#0d1117;border:1px solid rgba(232,101,26,.2);border-radius:8px;
+  padding:20px;font-family:var(--f-mono);font-size:12px;line-height:1.8;
+  color:#c9d1d9;overflow-x:auto;margin:12px 0;}
+.code-block .c-kw{color:#ff7b72;}
+.code-block .c-str{color:#a5d6ff;}
+.code-block .c-comment{color:#6e7681;}
+.step-list{display:flex;flex-direction:column;gap:16px;margin:20px 0;}
+.step-item{display:flex;gap:16px;align-items:flex-start;}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--orange);
+  display:grid;place-items:center;font-family:var(--f-mono);font-size:11px;
+  color:var(--dark);flex-shrink:0;font-weight:700;}
+.step-content{flex:1;}
+.step-title{font-size:14px;font-weight:500;color:var(--cream);margin-bottom:4px;}
+.step-desc{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* ── FOOTER ── */
+.footer{background:var(--green);padding:60px 40px;text-align:center;}
+.footer-logo{font-family:var(--f-display);font-size:48px;color:var(--orange);letter-spacing:-.5px;}
+.footer-thai{font-size:14px;letter-spacing:4px;color:rgba(253,246,227,.5);margin-top:4px;}
+.footer-meta{margin-top:24px;font-family:var(--f-mono);font-size:10px;
+  letter-spacing:2px;color:rgba(253,246,227,.4);line-height:2;}
+.footer-note{margin-top:20px;font-size:12px;color:rgba(253,246,227,.3);
+  font-style:italic;font-family:var(--f-serif);}
+
+/* ── TT BANNER ── */
+.tt-banner{background:rgba(155,28,46,.12);border:1px solid rgba(155,28,46,.25);
+  border-radius:8px;padding:16px 20px;margin-bottom:32px;
+  display:flex;gap:12px;align-items:flex-start;}
+.tt-banner-icon{font-size:18px;flex-shrink:0;}
+.tt-banner-text{font-size:12px;color:rgba(253,246,227,.7);line-height:1.7;}
+.tt-banner-text strong{color:var(--cream);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .nav{padding:0 16px;}
+  .hero{padding:80px 20px 40px;}
+  .hero-stats{flex-wrap:wrap;}
+  .hero-stat{min-width:50%;}
+  .section{padding:60px 20px;}
+  .section-num{font-size:56px;}
+  .phase-head{flex-wrap:wrap;}
+  .task-code{display:none;}
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .comp-table{font-size:11px;}
+  .comp-table td,.comp-table th{padding:8px;}
+  .alert-banner{flex-direction:column;gap:8px;}
+}
+@media(max-width:480px){
+  .hero-title{font-size:clamp(60px,18vw,100px);}
+  .team-grid{grid-template-columns:1fr;}
+  .hero-stats{flex-direction:column;}
+  .hero-stat{width:100%;border-right:none;border-bottom:1px solid var(--border);}
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.hero-inner > *{animation:fadeUp .6s ease backwards;}
+.hero-eyebrow{animation-delay:.1s;}
+.hero-title{animation-delay:.2s;}
+.hero-thai{animation-delay:.3s;}
+.hero-desc{animation-delay:.4s;}
+.hero-stats{animation-delay:.5s;}
+.hero-progress{animation-delay:.6s;}
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE TOGGLE -->
+<div class="lang-toggle">
+  <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+</div>
+
+<!-- HEADER -->
+<section class="section" id="header" style="padding-top:96px;border-bottom:2px solid var(--border);">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+    <div>
+      <div style="font-family:var(--f-mono);font-size:10px;letter-spacing:4px;color:var(--orange);text-transform:uppercase;margin-bottom:8px;">AMG Hospitality Group · Programa de Marca</div>
+      <div style="font-family:var(--f-display);font-size:clamp(28px,4vw,44px);color:var(--cream);line-height:1;margin-bottom:4px;"><span class="en">Pre-Opening Master Program</span><span class="es">Programa Maestro de Pre-Apertura</span></div>
+      <div style="font-family:var(--f-display);font-size:clamp(36px,5vw,56px);color:var(--orange);line-height:1;">KAB KHAO</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:12px;font-family:var(--f-mono);">กับข้าว · Thai Eatery · Dinamarca 54, CDMX</div>
+    </div>
+    <div style="display:grid;gap:12px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:var(--subtle);border:1px solid var(--border);border-radius:8px;padding:16px;">
+          <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:2px;color:var(--orange);text-transform:uppercase;margin-bottom:6px;"><span class="en">Brand</span><span class="es">Marca</span></div>
+          <div style="font-size:13px;color:var(--cream);">Kab Khao Thai Eatery</div>
+        </div>
+        <div style="background:var(--subtle);border:1px solid var(--border);border-radius:8px;padding:16px;">
+          <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:2px;color:var(--orange);text-transform:uppercase;margin-bottom:6px;"><span class="en">Program PM</span><span class="es">PM del Programa</span></div>
+          <div style="font-size:13px;color:var(--cream);">Karla Leticia Pérez</div>
+        </div>
+        <div style="background:var(--subtle);border:1px solid var(--border);border-radius:8px;padding:16px;">
+          <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:2px;color:var(--orange);text-transform:uppercase;margin-bottom:6px;"><span class="en">Start Date</span><span class="es">Fecha de Inicio</span></div>
+          <div style="font-size:13px;color:var(--cream);"><span class="en">June 1, 2026</span><span class="es">1 de Junio, 2026</span></div>
+        </div>
+        <div style="background:var(--subtle);border:1px solid var(--border);border-radius:8px;padding:16px;">
+          <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:2px;color:var(--orange);text-transform:uppercase;margin-bottom:6px;"><span class="en">End Date</span><span class="es">Fecha de Cierre</span></div>
+          <div style="font-size:13px;color:var(--cream);"><span class="en">August 17, 2026</span><span class="es">17 de Agosto, 2026</span></div>
+        </div>
+        <div style="background:var(--subtle);border:1px solid var(--border);border-radius:8px;padding:16px;">
+          <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:2px;color:var(--orange);text-transform:uppercase;margin-bottom:6px;"><span class="en">Grand Opening Target</span><span class="es">Apertura Objetivo</span></div>
+          <div style="font-size:13px;color:var(--orange);font-weight:600;"><span class="en">August 3, 2026</span><span class="es">3 de Agosto, 2026</span></div>
+        </div>
+        <div style="background:var(--subtle);border:1px solid var(--border);border-radius:8px;padding:16px;">
+          <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:2px;color:var(--orange);text-transform:uppercase;margin-bottom:6px;"><span class="en">Status</span><span class="es">Estado</span></div>
+          <div style="font-size:13px;color:#4CAF50;font-weight:600;">● <span class="en">In Progress</span><span class="es">En Curso</span></div>
+        </div>
+      </div>
+      <div style="background:rgba(232,101,26,.08);border:1px solid rgba(232,101,26,.2);border-radius:8px;padding:16px;">
+        <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:2px;color:var(--orange);text-transform:uppercase;margin-bottom:6px;"><span class="en">Escalation Flow</span><span class="es">Flujo de Escalación</span></div>
+        <div style="font-size:12px;color:var(--muted);">
+          <span class="en">Brand PM → EA (filter &amp; coordinate) → DG (focus, capital &amp; direction decisions only). All task detail and progress lives in Asana.</span>
+          <span class="es">Brand PM → EA (filtra y coordina) → DG (solo decisiones de foco, capital y rumbo). Todo detalle y avance de tareas vive en Asana.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-sep"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">KAB KHAO<sub>กับข้าว · <span class="en">Pre-Opening Program</span><span class="es">Programa de Pre-Apertura</span></sub></div>
+  <div class="nav-links">
+    <a class="nav-a" href="#header"><span class="en">Header</span><span class="es">Header</span></a>
+    <a class="nav-a" href="#s01"><span class="en">Context &amp; Purpose</span><span class="es">Contexto y Propósito</span></a>
+    <a class="nav-a" href="#s03"><span class="en">Objectives</span><span class="es">Objetivos</span></a>
+    <a class="nav-a" href="#s04"><span class="en">Culinary Dir.</span><span class="es">Dir. Culinaria</span></a>
+    <a class="nav-a" href="#s05"><span class="en">Hospitality</span><span class="es">Hospitalidad</span></a>
+    <a class="nav-a" href="#s06">Marketing</a>
+    <a class="nav-a" href="#s07"><span class="en">Ops</span><span class="es">Ops</span></a>
+    <a class="nav-a" href="#s08"><span class="en">Finance</span><span class="es">Finanzas</span></a>
+    <a class="nav-a" href="#s09"><span class="en">KPIs</span><span class="es">KPIs</span></a>
+    <a class="nav-a" href="#s11"><span class="en">Government</span><span class="es">Gobierno</span></a>
+    
+  </div>
+  <div class="nav-progress">
+    <span class="nav-pct" id="nav-pct">0%</span>
+    <div class="nav-bar-wrap"><div class="nav-bar-fill" id="nav-bar"></div></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-glow-a"></div>
+  <div class="hero-glow-b"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="en">AMG Hospitality Group · Dinamarca 54, CDMX · Confidential</span><span class="es">AMG Hospitality Group · Dinamarca 54, CDMX · Confidencial</span></div>
+    <div class="hero-title">KAB KHAO</div>
+    <div class="hero-thai"><span class="en">กับข้าว · Thai Eatery · Pre-Opening Master Program</span><span class="es">กับข้าว · Thai Eatery · Programa Maestro de Pre-Apertura</span></div>
+    <p class="hero-desc"><span class="en">The definitive operational blueprint from now to Grand Opening — every area, every owner, every deadline. This document does not replace Asana; all details, conversations, and updates live there.</span><span class="es">El plan operativo definitivo de hoy hasta la Gran Apertura — cada área, cada responsable, cada fecha límite. Este documento no reemplaza Asana; todos los detalles, conversaciones y actualizaciones viven ahí.</span></p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-n">Aug 3</div>
+        <div class="hero-stat-l"><span class="en">Target Grand<br>Opening</span><span class="es">Apertura<br>Objetivo</span></div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">5</div>
+        <div class="hero-stat-l"><span class="en">Program<br>Phases</span><span class="es">Fases del<br>Programa</span></div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">9 wks</div>
+        <div class="hero-stat-l"><span class="en">Time to<br>Opening</span><span class="es">Tiempo a la<br>Apertura</span></div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">~60</div>
+        <div class="hero-stat-l"><span class="en">Dining<br>Capacity</span><span class="es">Capacidad<br>del Salón</span></div>
+      </div>
+    </div>
+    <div class="hero-progress">
+      <div class="hero-prog-bar"><div class="hero-prog-fill" id="hero-bar"></div></div>
+      <div class="hero-prog-label" id="hero-label">0% · Overall Program Progress</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- S01: OVERVIEW -->
+<section class="section" id="s01">
+  <div class="section-hd">
+    <div class="section-num">01</div>
+    <div class="section-hd-text">
+      <div class="section-title"><span class="en">Context &amp; Purpose</span><span class="es">Contexto y Propósito</span></div>
+      <div class="section-sub"><span class="en">Why this program exists · What success looks like</span><span class="es">Por qué existe este programa · Cómo se ve el éxito</span></div>
+    </div>
+  </div>
+
+  <div class="tt-banner">
+    <div class="tt-banner-icon">⚠️</div>
+    <div class="tt-banner-text"><span class="en"><strong>Tiin Thai Continuity Note:</strong> A parallel transition plan for Tiin Thai must run alongside this program. TT continues operating, growing, and refining its menu independently. KK does not cannibalize TT — they serve different occasions. That plan is a separate document; this note exists only to ensure it is never overlooked. Owner: DG · Exec Chef · EA.</span><span class="es"><strong>Nota de Continuidad Tiin Thai:</strong> Un plan paralelo de transición para Tiin Thai debe correr junto a este programa. TT continúa operando, creciendo y refinando su menú de forma independiente. KK no canibaliza a TT — son ocasiones distintas. Ese plan es un documento separado; esta nota existe solo para que nunca se olvide. Responsable: DG · Chef Ejecutiva · EA.</span></div>
+  </div>
+
+  <div style="background:var(--green);border-radius:12px;padding:28px;margin-bottom:32px;">
+    <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:4px;color:var(--yellow);text-transform:uppercase;margin-bottom:12px;"><span class="en">⚑ PURPOSE</span><span class="es">⚑ PROPÓSITO</span></div>
+    <div style="font-family:var(--f-display);font-size:clamp(18px,2.5vw,26px);color:var(--cream);line-height:1.3;">
+      <span class="en">Kab Khao opens on August 3, 2026 at full operational capacity — kitchen validated, team trained and certified, permits in place, financial infrastructure live, and a hospitality standard that makes it the reference casual Thai eatery in CDMX within 60 days of opening.</span>
+      <span class="es">Kab Khao abre el 3 de agosto de 2026 con capacidad operativa completa — cocina validada, equipo entrenado y certificado, permisos en orden, infraestructura financiera activa y un estándar de hospitalidad que lo convierte en el restaurante Thai casual de referencia en CDMX dentro de los 60 días de apertura.</span>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card card-accent">
+      <div class="card-icon">🍜</div>
+      <div class="card-title"><span class="en">The Concept</span><span class="es">El Concepto</span></div>
+      <div class="card-body"><span class="en">Vibrant, street-style Thai eatery led by our Thai chef. Bold authentic flavors, sharing format, mid-range pricing. 70% uncompromised classics, 30% reinvention that earns its place. Open kitchen — everything visible, everything intentional.</span><span class="es">Vibrante eatery de comida tailandesa callejera liderada por la nuestra chef tailandesa. Sabores auténticos intensos, formato para compartir, precios medios. 70% clásicos sin concesiones, 30% reinvención que se gana su lugar. Cocina abierta — todo visible, todo intencional.</span></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-icon">🏆</div>
+      <div class="card-title"><span class="en">The Differentiator</span><span class="es">El Diferenciador</span></div>
+      <div class="card-body"><span class="en">The only casual Thai in CDMX that is simultaneously authentic (true Thai chef), vibrant (street energy design), mid-range, and exceptional in service. No competitor owns this lane. Galanga wins on credentials — we win on warmth, speed, and consistency.</span><span class="es">El único Thai casual en CDMX que es simultáneamente auténtico (verdadera chef tailandesa), vibrante (diseño de energía callejera), precio medio y excepcional en servicio. Ningún competidor es dueño de este espacio. Galanga gana en credenciales — nosotros ganamos en calidez, velocidad y consistencia.</span></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-icon">🙏</div>
+      <div class="card-title"><span class="en">Hospitality Doctrine</span><span class="es">Doctrina de Hospitalidad</span></div>
+      <div class="card-body"><span class="en">Danny Meyer principle: guests leave feeling they received more than they gave. Service is warmth with precision — not a robotic sequence. A server who makes a guest feel seen is worth more than one who recites the menu perfectly. Thailand is "The Land of Smiles" — we bring that to CDMX.</span><span class="es">Principio Danny Meyer: los comensales se van sintiendo que recibieron más de lo que dieron. El servicio es calidez con precisión — no una secuencia robótica. Un mesero que hace sentir visto al comensal vale más que uno que recita el menú perfectamente. Tailandia es "La Tierra de las Sonrisas" — traemos eso a CDMX.</span></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-icon">📊</div>
+      <div class="card-title"><span class="en">Success Definition</span><span class="es">Definición de Éxito</span></div>
+      <div class="card-body"><span class="en">Full restaurant by Week 4. Google 4.5+ in 60 days. Break-even in 3 months. Weekend waitlist within 3 months (if we decide to take reservations). Labor 15–17% (stretch) / 20–22% floor. Food cost 28–32%. 20% net margin target. Kab Khao becomes the reference Thai in CDMX — through excellent service and quality, with no shortcuts that compromise those priorities.</span><span class="es">Restaurante lleno en Semana 4. Google 4.5+ en 60 días. Punto de equilibrio en 3 meses. Lista de espera en fines de semana en 3 meses (si decidimos tomar reservaciones). Costo laboral 15–17% (stretch) / 20–22% piso. Costo de alimentos 28–32%. Margen neto objetivo 20%. Kab Khao se convierte en el Thai de referencia en CDMX — con servicio y calidad excelentes, sin atajos que comprometan esas prioridades.</span></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-icon">🏗️</div>
+      <div class="card-title"><span class="en">Construction Is Its Own Project</span><span class="es">La Construcción Es Su Propio Proyecto</span></div>
+      <div class="card-body"><span class="en">Expansion owns and is already driving the full construction plan with a committed ready-date. This program pushes it forward but does not replace it. No gaps, no loops, speed is essential. Every phase trigger depends on the construction commitment date. <strong>The Brand PM and Expansion must stay tightly coordinated</strong> — the PM absorbs non-construction items so Expansion stays focused on the build.</span><span class="es">Expansión es dueña y ya está impulsando el plan completo de obra con fecha comprometida de entrega. Este programa lo empuja pero no lo reemplaza. Sin brechas, sin loops, la velocidad es esencial. Cada activador de fase depende de la fecha de compromiso de obra. <strong>El Brand PM y Expansión deben estar muy bien coordinados</strong> — el PM absorbe los temas no-obra para que Expansión se mantenga enfocada en la construcción.</span></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-icon">🎵</div>
+      <div class="card-title"><span class="en">Every Detail Counts</span><span class="es">Cada Detalle Cuenta</span></div>
+      <div class="card-body"><span class="en">Music curation is non-negotiable — curated playlist before opening, not a Spotify shuffle. Ambience, scent, lighting, table spacing, uniform detail, bathroom cleanliness cadence — all planned before Day 1. We do not improvise and we are 100% sure of our project.</span><span class="es">La curación musical es innegociable — playlist curada antes de abrir, no un Spotify shuffle. Ambiente, aroma, iluminación, espacio entre mesas, detalle del uniforme, cadencia de limpieza de baños — todo planeado antes del Día 1. No improvisamos y estamos 100% seguros de nuestro proyecto.</span></div>
+    </div>
+  </div>
+
+  <div class="insight insight-warning" style="margin-top:32px;">
+    <div>
+      <div class="insight-label"><span class="en">⚠ This plan does not replace Asana</span><span class="es">⚠ Este plan no reemplaza Asana</span></div>
+      <div class="insight-body"><span class="en">All task details, comments, blockers, and conversations must live in Asana. This program is the strategic reference — Asana is where execution happens. Every responsible person must have their tasks active and updated.</span><span class="es">Todos los detalles de tareas, comentarios, bloqueadores y conversaciones deben vivir en Asana. Este programa es la referencia estratégica — Asana es donde ocurre la ejecución. Cada responsable debe tener sus tareas activas y actualizadas.</span></div>
+    </div>
+  </div>
+</section>
+<div class="section-sep"></div>
+
+<!-- S02: TEAM MAP -->
+
+
+<!-- S03: PHASES -->
+<section class="section" id="s03">
+  <div class="section-hd">
+    <div class="section-num">03</div>
+    <div class="section-hd-text">
+      <div class="section-title"><span class="en">Objectives</span><span class="es">Objetivos</span></div>
+      <div class="section-sub"><span class="en">Numbered objectives across 5 phases · Grand Opening: August 3, 2026</span><span class="es">Objetivos numerados en 5 fases · Apertura: 3 de Agosto, 2026</span></div>
+    </div>
+  </div>
+
+  <div class="insight insight-warning">
+    <div>
+      <div class="insight-label"><span class="en">⚠ Phase trigger dependency</span><span class="es">⚠ Dependencia de activación de fases</span></div>
+      <div class="insight-body"><span class="en">All phase dates are calculated backward from August 3. Construction is already underway and led by Expansion — the committed delivery date is the anchor for hiring, training, and soft opening timing. The Brand PM coordinates everything else around that anchor.</span><span class="es">Todas las fechas de fase se calculan hacia atrás desde el 3 de agosto. La construcción ya está en marcha y liderada por Expansión — la fecha de entrega comprometida es el ancla para contrataciones, entrenamientos y soft openings. El Brand PM coordina todo lo demás alrededor de esa ancla.</span></div>
+    </div>
+  </div>
+
+  <div class="phases-wrap" style="margin-top:32px;">
+
+    <!-- PHASE 1 -->
+    <div class="phase">
+      <div class="phase-head">
+        <div class="phase-badge ph1"><span class="en">Phase 1 · NOW</span><span class="es">Fase 1 · AHORA</span></div>
+        <div class="phase-head-main">
+          <div class="phase-head-title"><span class="en">Foundation &amp; Lock</span><span class="es">Fundación y Bloqueo</span></div>
+          <div class="phase-head-dates"><span class="en">June 1–14 · Weeks 1–2</span><span class="es">Jun 1–14 · Semanas 1–2</span></div>
+        </div>
+        <div class="phase-prog-wrap">
+          <div class="phase-prog-pct" id="pct-1">0%</div>
+          <div class="phase-prog-bar"><div class="phase-prog-fill tf-1" id="bar-1"></div></div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal-text"><span class="en">Lock every strategic decision before the build accelerates. Legal, culinary, financial, and design must all be resolved this phase — nothing can be "TBD" going into Week 3. Expansion delivers the construction master plan with committed dates. This is the only phase where decisions are still free; after this, changes cost money and time.</span><span class="es">Bloquear cada decisión estratégica antes de que la construcción se acelere. Legal, culinario, financiero y diseño deben estar resueltos en esta fase — nada puede quedar como 'Pendiente' al entrar a la Semana 3. Expansión entrega el plan maestro de construcción con fechas comprometidas. Esta es la única fase donde las decisiones todavía son libres; después de esta, los cambios cuestan dinero y tiempo.</span></div>
+        <div class="task-list" data-phase="1">
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-01</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Expansion presents a full construction plan with specific dates and needs (budget, approvals, materials, contractor milestones) and a committed operational-readiness date. This anchors all remaining phases. The Brand PM and Expansion stay tightly coordinated — the PM absorbs non-construction coordination so Expansion stays focused on the build — without duplicating work.</span><span class="es">Expansión lidera y es dueña del plan completo de obra, contratistas, instalación de equipos y fecha de entrega para la operatividad — esto ya está en marcha. Expansión confirma el cronograma maestro que ancla todas las fases restantes. El Brand PM complementa absorbiendo temas de coordinación no relacionados con la obra para que Expansión se mantenga 100% enfocada en construcción, contratistas y equipos — se coordinan continuamente sin duplicar trabajo.</span></div><div class="task-meta"><span class="task-owner"><span class="en">EXPANSION</span><span class="es">EXPANSION</span></span><span class="task-priority p-crit"><span class="en">URGENT</span><span class="es">URGENTE</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-02</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Artículo 62 KK — Legal. Resolve as soon as possible and escalate to the DG if any obstacle exists. This is the most time-sensitive legal item.</span><span class="es">Artículo 62 KK — Legal. Resolver lo antes posible y escalar al DG si existe algún obstáculo. Es el tema legal más urgente.</span></div><div class="task-meta"><span class="task-owner"><span class="en">LEGAL</span><span class="es">LEGAL</span></span><span class="task-priority p-crit"><span class="en">URGENT</span><span class="es">URGENTE</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-03</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Architectural and executive project approved by partners and building administration.</span><span class="es">Proyecto arquitectónico y ejecutivo aprobado por socios y administración del edificio.</span></div><div class="task-meta"><span class="task-owner"><span class="en">EXPANSION</span><span class="es">EXPANSION</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-04</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Kitchen distribution finalized with Exec Chef and Operations sign-off. Equipment list locked. Confirmation overdue — resolve this week.</span><span class="es">Distribución de cocina finalizada con visto bueno de Chef Ejecutiva y Operaciones. Lista de equipo bloqueada. Confirmación vencida — resolver esta semana.</span></div><div class="task-meta"><span class="task-owner"><span class="en">EXPANSION · EXEC CHEF · OPS DIR</span><span class="es">EXPANSION · EXEC CHEF · OPS DIR</span></span><span class="task-priority p-crit"><span class="en">OVERDUE</span><span class="es">VENCIDO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-05</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Menu fully standardized, documented, and photographed (reference set). Food cost validated by costing (EA). Target: 28–32% — this is the cost of each dish as a % of its sale price, not a platform or app commission.</span><span class="es">Menú completamente estandarizado, documentado y fotografiado (set de referencia). Costeo validado por costeo (EA). Meta: 28–32% — es el costo de cada platillo como % de su precio de venta, no una comisión de plataforma o app.</span></div><div class="task-meta"><span class="task-owner"><span class="en">EXEC CHEF · EA · CULINARY ADVISOR · KITCHEN CHEF</span><span class="es">EXEC CHEF · EA · CULINARY ADVISOR · KITCHEN CHEF</span></span><span class="task-priority p-crit"><span class="en">OVERDUE</span><span class="es">VENCIDO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-06</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Cocktail and drink menu developed with mixologist. Full costing by EA. Non-alcoholic lineup defined (slushies, soft serve, mocktails, Thai iced drinks).</span><span class="es">Menú de cócteles y bebidas desarrollado con mixólogo. Costeo completo por EA. Lineup no alcohólico definido (slushies, soft serve, mocktails, bebidas tailandesas frías).</span></div><div class="task-meta"><span class="task-owner"><span class="en">CULINARY ADVISOR · EA · EXEC CHEF</span><span class="es">CULINARY ADVISOR · EA · EXEC CHEF</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-07</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Financial model validated with Finance: ticket average, covers projection, break-even at 3 months. AMG fee factored in (~8%, NOT yet confirmed). 20% net margin target confirmed or revised.</span><span class="es">Modelo financiero validado con Finanzas: ticket promedio, proyección de cubiertos, punto de equilibrio a 3 meses. Fee AMG incluido (~8%, NO confirmado aún). Meta de 20% margen neto confirmada o revisada.</span></div><div class="task-meta"><span class="task-owner"><span class="en">FINANCE DIR · EA · FINANCIAL ADVISORS</span><span class="es">FINANCE DIR · EA · FINANCIAL ADVISORS</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-08</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Legal folder complete: civil liability insurance contracted, operating permit, corporate structure, trademark registration filed.</span><span class="es">Carpeta legal completa: seguro de responsabilidad civil contratado, permiso de operación, estructura corporativa, registro de marca presentado.</span></div><div class="task-meta"><span class="task-owner"><span class="en">LEGAL · FINANCE DIR</span><span class="es">LEGAL · FINANCE DIR</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-09</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Ambience &amp; identity decisions locked: music curation brief, lighting design, uniform concept, tableware selection, signage. We do not open with TBDs here.</span><span class="es">Decisiones de ambiente e identidad bloqueadas: brief de curación musical, diseño de iluminación, concepto de uniforme, selección de vajilla, señalética. No abrimos con pendientes aquí.</span></div><div class="task-meta"><span class="task-owner"><span class="en">DG · BRAND PM · EXPANSION · PACKAGING</span><span class="es">DG · BRAND PM · EXPANSION · PACKAGING</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-10</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Architect/designer session with MYT + GLVDK: review all outstanding construction and design details before work accelerates. Get their checklist of what restaurants typically miss.</span><span class="es">Sesión con arquitectos/diseñadores MYT + GLVDK: revisar todos los detalles de construcción y diseño pendientes antes de que el trabajo se acelere. Obtener su checklist de lo que los restaurantes típicamente olvidan.</span></div><div class="task-meta"><span class="task-owner"><span class="en">EXPANSION · DG</span><span class="es">EXPANSION · DG</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-11</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">CDP production flow defined: what preps happen centrally vs. on-site at KK. Tiin Thai production must not conflict with KK schedule.</span><span class="es">Flujo de producción CDP definido: qué preparaciones ocurren centralmente vs. en sitio en KK. La producción de Tiin Thai no debe entrar en conflicto con el cronograma de KK.</span></div><div class="task-meta"><span class="task-owner"><span class="en">CDP · PLANNING · EXEC CHEF</span><span class="es">CDP · PLANNING · EXEC CHEF</span></span><span class="task-priority p-med"><span class="en">MEDIUM</span><span class="es">MEDIO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-12</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Every corporate department delivers a concise, new plan: specific targets and priorities from today to opening AND first 30 days post-opening. This is not an update of a previous document — it is a fresh, dated deliverable. No department operates without a plan on paper.</span><span class="es">Cada departamento corporativo entrega un plan conciso y nuevo: metas y prioridades específicas desde hoy hasta la apertura Y los primeros 30 días post-apertura. No es una actualización de un documento anterior — es un entregable fresco y fechado. Ningún departamento opera sin un plan en papel.</span></div><div class="task-meta"><span class="task-owner"><span class="en">BRAND PM · ALL AREA HEADS</span><span class="es">BRAND PM · TODOS LOS JEFES DE ÁREA</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH1-13</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Lock the approved restaurant team structure against the payroll budget: every post, headcount, wage, bonus scheme, and tip-sharing policy defined and validated against projected revenue. Adjust headcount to hit labor cost targets before any contract is signed.</span><span class="es">Cerrar la estructura aprobada del equipo del restaurante contra el presupuesto de nómina: cada puesto, headcount, salario, esquema de bonos y política de reparto de propinas definidos y validados contra el ingreso proyectado. Ajustar headcount para alcanzar las metas de costo laboral antes de firmar cualquier contrato.</span></div><div class="task-meta"><span class="task-owner"><span class="en">HR/MKTG DIR · FINANCE · OPS DIR</span><span class="es">HR/MKTG DIR · FINANCE · OPS DIR</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase">
+      <div class="phase-head">
+        <div class="phase-badge ph2"><span class="en">Phase 2</span><span class="es">Fase 2</span></div>
+        <div class="phase-head-main">
+          <div class="phase-head-title"><span class="en">Build, Equip &amp; Hire</span><span class="es">Construir, Equipar y Contratar</span></div>
+          <div class="phase-head-dates"><span class="en">June 15–28 · Weeks 3–4</span><span class="es">Jun 15–28 · Semanas 3–4</span></div>
+        </div>
+        <div class="phase-prog-wrap">
+          <div class="phase-prog-pct" id="pct-2">0%</div>
+          <div class="phase-prog-bar"><div class="phase-prog-fill tf-2" id="bar-2"></div></div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal-text"><span class="en">Construction nearing completion. Kitchen validated by Exec Chef. BOH team contracted (4–5 weeks before opening). POS and tableside ordering deployed and tested. Suppliers formalized. Brand content engine activated: warm-up posts begin. Do not pay idle payroll during construction — hire at the right moment, not the earliest moment.</span><span class="es">Construcción próxima a terminar. Cocina validada por Chef Ejecutiva. Equipo BOH contratado (4–5 semanas antes de abrir). POS y sistema de ordenes en mesa desplegados y probados. Proveedores formalizados. Motor de contenido de marca activado: comienzan publicaciones de calentamiento. No pagar nómina ociosa durante la construcción — contratar en el momento correcto, no en el más temprano.</span></div>
+        <div class="task-list" data-phase="2">
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH2-01</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">BOH team fully contracted: line cooks, prep cooks, dishwashers, bar staff — hired now (4–5 weeks before opening) to begin kitchen orientation and recipe learning with Exec Chef and Kitchen Chef. Be explicit at hiring about wages, any bonus, and the tip-sharing policy — no ambiguity. Packaging confirms uniforms are correct and ready before first day of training.</span><span class="es">Equipo BOH completamente contratado: cocineros de línea, cocineros de prep, lavaplatos, personal de barra — contratados ahora (4–5 semanas antes de abrir) para comenzar inducción de cocina y aprendizaje de recetas con Chef Ejecutiva y Chef de Cocina. Ser explícitos al contratar sobre salarios, cualquier bono y la política de reparto de propinas — sin ambigüedad. Empaque confirma que los uniformes son correctos y están listos antes del primer día de capacitación.</span></div><div class="task-meta"><span class="task-owner"><span class="en">HR/MKTG DIR · HR · RECRUITING</span><span class="es">HR/MKTG DIR · HR · RECRUITING</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH2-02</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Kitchen fully operational: all equipment installed and tested by Expansion (projects). Exec Chef and Kitchen Chef validate every station. Gas, hood, refrigeration, woks, soft-serve machine — zero punchlist items outstanding. The Maintenance team joins later for handover, training on each piece, and preventive plan — they do not get pulled into installation.</span><span class="es">Cocina completamente operativa: todo el equipo instalado y probado por Expansión (proyectos). Chef Ejecutiva y Chef de Cocina validan cada estación. Gas, campana, refrigeración, woks, máquina de soft serve — cero pendientes en la lista. El equipo de Mantenimiento entra después para handover, capacitación sobre cada equipo y plan preventivo — no se les desvía a la instalación.</span></div><div class="task-meta"><span class="task-owner"><span class="en">EXPANSION · MAINTENANCE · EXEC CHEF</span><span class="es">EXPANSION · MAINTENANCE · EXEC CHEF</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH2-03</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">POS system live and fully tested. Tableside ordering system (if deployed) integrated with kitchen display. Staff trained on POS before Phase 3 — no learning during service.</span><span class="es">Sistema POS en vivo y completamente probado. Sistema de ordenes en mesa (si se despliega) integrado con display de cocina. Personal entrenado en POS antes de la Fase 3 — sin aprendizaje durante el servicio.</span></div><div class="task-meta"><span class="task-owner"><span class="en">SYSTEMS</span><span class="es">SYSTEMS</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH2-04</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">All suppliers contracted and first deliveries received: produce, proteins, specialty Thai ingredients (galangal, butterfly pea flower, kaffir lime, fish sauce, palm sugar, rice varieties). Tested in kitchen.</span><span class="es">Todos los proveedores contratados y primeras entregas recibidas: produce, proteínas, ingredientes tailandeses especiales (galangal, flor de chícharo mariposa, lima kaffir, salsa de pescado, azúcar de palma, variedades de arroz). Probados en cocina.</span></div><div class="task-meta"><span class="task-owner"><span class="en">PURCHASING · EXEC CHEF · CDP</span><span class="es">PURCHASING · EXEC CHEF · CDP</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH2-05</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Warm-up content live: behind-the-scenes construction, the chef cooking, team arriving, space taking shape. Instagram, TikTok, Google Maps profile created and optimized with first photos.</span><span class="es">Contenido de calentamiento en vivo: construcción detrás de cámaras, la chef cocinando, equipo llegando, espacio tomando forma. Perfil de Instagram, TikTok, Google Maps creado y optimizado con primeras fotos.</span></div><div class="task-meta"><span class="task-owner"><span class="en">MARKETING · COMMUNITY MGR · HR/MKTG DIR</span><span class="es">MARKETING · COMMUNITY MGR · HR/MKTG DIR</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH2-06</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Music curation complete: curated playlist for each daypart (lunch, afternoon, dinner, weekend). Not a generic streaming playlist — this is brand identity through sound.</span><span class="es">Curación musical completa: playlist curada para cada momento del día (comida, tarde, cena, fin de semana). No es un playlist genérico de streaming — es identidad de marca a través del sonido.</span></div><div class="task-meta"><span class="task-owner"><span class="en">DG · BRAND PM · CULTURE</span><span class="es">DG · BRAND PM · CULTURE</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH2-07</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Safe purchased and installed. Opening float confirmed with Finance. Cash handling protocol documented and trained with floor managers and a trained cashier before opening — not improvised on Day 1.</span><span class="es">Caja fuerte comprada e instalada. Fondo de apertura confirmado con Finanzas. Protocolo de manejo de efectivo documentado y entrenado con gerentes de piso y cajero antes de abrir — no se improvisa el Día 1.</span></div><div class="task-meta"><span class="task-owner"><span class="en">FINANCE DIR · PURCHASING</span><span class="es">FINANCE DIR · PURCHASING</span></span><span class="task-priority p-med"><span class="en">MEDIUM</span><span class="es">MEDIO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH2-08</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Uniforms, packaging, menus (printed) delivered and reviewed. Nothing "pending approval" at this stage — all finalized in Phase 1.</span><span class="es">Uniformes, empaque, menús (impresos) entregados y revisados. Nada en "pendiente de aprobación" en esta etapa — todo finalizado en Fase 1.</span></div><div class="task-meta"><span class="task-owner"><span class="en">PACKAGING · EXPANSION</span><span class="es">PACKAGING · EXPANSION</span></span><span class="task-priority p-med"><span class="en">MEDIUM</span><span class="es">MEDIO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH2-09</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">OPTIONAL — only if we decide to take reservations from day one: reservation system (OpenTable or equivalent), policies defined (max party size, cancellation, waitlist). If we open walk-in only as a ramp-up choice, this is deferred.</span><span class="es">OPCIONAL — solo si decidimos tomar reservaciones desde el día uno: sistema de reservaciones (OpenTable o equivalente), políticas definidas (tamaño máximo de grupo, cancelación, lista de espera). Si abrimos solo walk-in como decisión de ramp-up, esto se difiere.</span></div><div class="task-meta"><span class="task-owner"><span class="en">SYSTEMS · OPS DIR · OPS MGR</span><span class="es">SYSTEMS · OPS DIR · OPS MGR</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase">
+      <div class="phase-head">
+        <div class="phase-badge ph3"><span class="en">Phase 3</span><span class="es">Fase 3</span></div>
+        <div class="phase-head-main">
+          <div class="phase-head-title"><span class="en">Train, Drill &amp; Standardize</span><span class="es">Entrenar, Practicar y Estandarizar</span></div>
+          <div class="phase-head-dates"><span class="en">June 29 – July 12 · Weeks 5–6</span><span class="es">Jun 29 – Jul 12 · Semanas 5–6</span></div>
+        </div>
+        <div class="phase-prog-wrap">
+          <div class="phase-prog-pct" id="pct-3">0%</div>
+          <div class="phase-prog-bar"><div class="phase-prog-fill tf-3" id="bar-3"></div></div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal-text"><span class="en">FOH team hired (3 weeks before opening). Full team in the building. Drill with purpose — every run is scored. Watch for dishes or details that need adjustment. Polish, take a step back, correct. Corporate staff invited for a working day to build firsthand ownership. Everyone involved studies, learns, asks, and trains on anything that helps the restaurant. Professional food photography session completed. This phase ends only when every person in every role could execute service confidently.</span><span class="es">Equipo FOH contratado (3 semanas antes de abrir). Equipo completo en el edificio. Practicar con propósito — cada run se califica. Estar atentos a cualquier platillo o detalle que requiera ajuste. Pulir, dar un paso atrás, corregir. Personal corporativo invitado a un día de trabajo para generar ownership de primera mano. Todos los involucrados estudian, aprenden, preguntan y se capacitan en cualquier cosa que ayude al restaurante. Sesión de fotografía gastronómica profesional completada. Esta fase termina solo cuando cada persona en cada rol pueda ejecutar el servicio con confianza.</span></div>
+        <div class="task-list" data-phase="3">
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH3-01</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">FOH team hired: floor manager, servers (trained and tested on all dishes), host/hostess, bar staff, runners. 3 weeks minimum before opening. Uniforms on, culture briefing done.</span><span class="es">Equipo FOH contratado: gerente de piso, meseros (entrenados y probados en todos los platillos), host/hostess, personal de bar, runners. Mínimo 3 semanas antes de abrir. Uniformes puestos, briefing de cultura completado.</span></div><div class="task-meta"><span class="task-owner"><span class="en">HR/MKTG DIR · HR · CULTURE</span><span class="es">HR/MKTG DIR · HR · CULTURE</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH3-02</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Intensive tasting and execution: every dish tasted, perfected, and locked — taste, portion, plating. Plating selection is critical for this concept; the food must look as good as it tastes, with visual aids and a reference photo for every dish. Every server eats every dish and knows 3 things about each: what it is, where it's from in Thailand, what makes our version distinct. Not memorized — internalized.</span><span class="es">Cata y ejecución intensiva: cada platillo probado, perfeccionado y cerrado — sabor, porción, emplatado. La selección de emplatado es crítica para este concepto; la comida debe verse tan bien como sabe, con apoyos visuales y una foto de referencia por platillo. Cada mesero come cada platillo y conoce 3 cosas de cada uno: qué es, de dónde es en Tailandia, qué hace distinta nuestra versión. No memorizado — internalizado.</span></div><div class="task-meta"><span class="task-owner"><span class="en">EXEC CHEF · KITCHEN CHEF · OPS DIR · OPS MGR</span><span class="es">EXEC CHEF · KITCHEN CHEF · OPS DIR · OPS MGR</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH3-03</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Service speed drills: greeting at table &lt;60 sec from seated, first drink &lt;4 min, welcome detail on table &lt;6 min, first shared dish &lt;10 min, entrée &lt;15 min from order, bill delivered &lt;90 sec after it is requested. Every session is timed. Quality documents each session and establishes the reference standard. Brand PM observes and tracks. Any station missing target gets a dedicated re-drill that same day — not next week.</span><span class="es">Simulacros de velocidad: saludo &lt;60 seg desde que se sientan, primera bebida &lt;4 min, detalle de bienvenida &lt;6 min, primer platillo compartido &lt;10 min, plato fuerte &lt;15 min desde la orden, cuenta entregada &lt;90 seg después de solicitarla. Cada sesión se cronometra. El stack tecnológico (POS, orden en mesa, display de cocina) es decisivo para alcanzar estos tiempos. Calidad documenta cada sesión y fija el estándar de referencia. El Brand PM observa y da seguimiento. Cualquier estación que no alcance la meta recibe re-simulacro ese mismo día — no la próxima semana.</span></div><div class="task-meta"><span class="task-owner"><span class="en">OPS DIR · OPS MGR</span><span class="es">OPS DIR · OPS MGR</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH3-04</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Open kitchen protocols: chef whites always clean, stations always organized, no personal items visible, hand hygiene visible at all times. Full visibility means full accountability.</span><span class="es">Protocolos de cocina abierta: uniformes de chef siempre limpios, estaciones siempre organizadas, sin artículos personales visibles, higiene de manos visible en todo momento. Visibilidad total significa responsabilidad total.</span></div><div class="task-meta"><span class="task-owner"><span class="en">EXEC CHEF · KITCHEN CHEF · QUALITY</span><span class="es">EXEC CHEF · KITCHEN CHEF · QUALITY</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH3-05</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Professional photography — two distinct sessions with different timing and set-ups: <strong>(A) Food &amp; kitchen session</strong> — all hero dishes, cocktails, slushies, soft serve, preps, welcome detail, plating. Triggered when the menu is locked, plating is final, and kitchen is operational. <strong>(B) Space &amp; brand session</strong> — interior, terrace, bar, open kitchen, signage, brand elements, team portraits. Triggered when the space is fully finished and styled. Each session has its own readiness conditions — being ready for one does NOT mean ready for the other. Plan each at the right moment so no element blocks the other.</span><span class="es">Sesiones fotográficas profesionales — dos sesiones distintas con timing y set-ups diferentes: <strong>(A) Sesión de comida y cocina</strong> — todos los platillos hero, cócteles, slushies, soft serve, preps, detalle de bienvenida, emplatado. Se detona cuando el menú está bloqueado, el emplatado es final y la cocina está operativa. <strong>(B) Sesión de local y marca</strong> — interior, terraza, bar, cocina abierta, señalética, elementos de marca, retratos del equipo. Se detona cuando el espacio está completamente terminado y styled. Cada sesión tiene sus propias condiciones de readiness — estar listos para una NO significa estar listos para la otra. Planear cada una en el momento correcto para que ningún elemento bloquee al otro.</span></div><div class="task-meta"><span class="task-owner"><span class="en">MARKETING · HR/MKTG DIR · EXEC CHEF</span><span class="es">MARKETING · HR/MKTG DIR · EXEC CHEF</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH3-06</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">PR agency briefed and activated: press release, media kit with the chef's story, editorial pitches to Chilango, Time Out CDMX, El Universal Más, food podcasts. Opening event coverage plan locked.</span><span class="es">Agencia de PR briefeada y activada: comunicado de prensa, media kit con la historia de la chef, pitches editoriales a Chilango, Time Out CDMX, El Universal Más, podcasts de gastronomía. Plan de cobertura del evento de apertura bloqueado.</span></div><div class="task-meta"><span class="task-owner"><span class="en">HR/MKTG DIR · MARKETING · BRAND PM</span><span class="es">HR/MKTG DIR · MARKETING · BRAND PM</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH3-07</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Delivery platforms fully prepared: Uber Eats, Rappi, DiDi Food — professional photography, complete menus, accurate pricing, KK and Tiin Thai identities clearly differentiated. We may deliberately delay turning them on as part of the ramp-up, but everything must be ready to activate on demand.</span><span class="es">Plataformas de delivery completamente preparadas: Uber Eats, Rappi, DiDi Food — fotografía profesional, menús completos, precios precisos, identidades de KK y Tiin Thai claramente diferenciadas. Podemos retrasar deliberadamente su activación como parte del ramp-up, pero todo debe estar listo para activar cuando se decida.</span></div><div class="task-meta"><span class="task-owner"><span class="en">SYSTEMS · MARKETING · PURCHASING</span><span class="es">SYSTEMS · MARKETING · PURCHASING</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH3-08</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Corporate team working day at KK: AMG staff work a service in the restaurant (serve, prep, host, wash). First-hand ownership, real feedback, team pride.</span><span class="es">Día de trabajo corporativo en KK: el personal de AMG trabaja un servicio en el restaurante (atender, preparar, recibir, lavar). Ownership de primera mano, retroalimentación real, orgullo de equipo.</span></div><div class="task-meta"><span class="task-owner"><span class="en">CULTURE · DG · BRAND PM</span><span class="es">CULTURE · DG · BRAND PM</span></span><span class="task-priority p-med"><span class="en">MEDIUM</span><span class="es">MEDIO</span></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase">
+      <div class="phase-head">
+        <div class="phase-badge ph4"><span class="en">Phase 4</span><span class="es">Fase 4</span></div>
+        <div class="phase-head-main">
+          <div class="phase-head-title"><span class="en">Soft Opens, PR &amp; Final Polish</span><span class="es">Soft Opens, PR y Pulido Final</span></div>
+          <div class="phase-head-dates"><span class="en">July 13 – August 1 · Weeks 7–8</span><span class="es">Jul 13 – Ago 1 · Semanas 7–8</span></div>
+        </div>
+        <div class="phase-prog-wrap">
+          <div class="phase-prog-pct" id="pct-4">0%</div>
+          <div class="phase-prog-bar"><div class="phase-prog-fill tf-4" id="bar-4"></div></div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal-text"><span class="en">Controlled pre-opening groups generate real income while we polish. AMG network is large — space groups across multiple nights, mixing paying guests with non-paying (influencers, press, family). Every session has a specific objective: test a flow, evaluate a dish, collect reviews. Use feedback immediately. Watch out for any dish or detail that requires adjustment. This is where we earn the right to open publicly.</span><span class="es">Los grupos de pre-apertura controlados generan ingresos reales mientras pulimos. La red de AMG es grande — espaciar grupos en varias noches, mezclando comensales que pagan con los que no pagan (influencers, prensa, familia). Cada sesión tiene un objetivo específico: probar un flujo, evaluar un platillo, recolectar reseñas. Usar la retroalimentación de inmediato. Estar atentos a cualquier platillo o detalle que requiera ajuste. Aquí nos ganamos el derecho de abrir al público.</span></div>
+        <div class="task-list" data-phase="4">
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH4-01</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Dummy Run 1 — Internal only: full service simulation with AMG corporate staff as guests. Score every station: kitchen speed, FOH warmth, order accuracy, drink timing. Quality documents and sets the reference standard — they need to see the ideal scenario to later evaluate deviations. Brand PM observes and captures notes. Immediate debrief.</span><span class="es">Dummy Run 1 — Solo interno: simulación de servicio completo con personal corporativo de AMG como comensales. Calificar cada estación: velocidad de cocina, calidez FOH, precisión de órdenes, tiempos de bebida. Calidad documenta y establece el estándar de referencia — necesitan el escenario ideal para después evaluar desviaciones. El Brand PM observa y captura notas. Debrief inmediato.</span></div><div class="task-meta"><span class="task-owner"><span class="en">OPS DIR · OPS MGR · EXEC CHEF · CULTURE</span><span class="es">OPS DIR · OPS MGR · EXEC CHEF · CULTURE</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH4-02</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Dummy Run 2 — Many small paying seatings, then one full-capacity test: run multiple smaller staggered groups across several nights for income and maximum feedback. Once service is solid, push a FULL-CAPACITY friends &amp; family night to stress kitchen and floor and surface every leak before opening. Real paying guests, real service. Quality documents against the standard; Brand PM tracks issues. A server carries a QR for reviews — no QR codes on tables.</span><span class="es">Dummy Run 2 — Muchos turnos pequeños pagando, luego una prueba a capacidad completa: correr múltiples grupos pequeños escalonados en varias noches para ingresos y máxima retroalimentación. Una vez sólido el servicio, empujar una noche de amigos y familia a CAPACIDAD COMPLETA para estresar cocina y piso y detectar cada fuga antes de abrir. Comensales reales pagando, servicio real. Calidad documenta contra el estándar; el Brand PM da seguimiento. Un mesero carga un QR para reseñas — sin códigos QR en las mesas.</span></div><div class="task-meta"><span class="task-owner"><span class="en">BRAND PM · OPS DIR · MARKETING</span><span class="es">BRAND PM · OPS DIR · MARKETING</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH4-03</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Influencer event: a curated group (can be somewhat larger than 8–10 if it makes sense, not excessive) with genuine Thai food interest. Targeted dinner, Exec Chef present, full menu. Content commitment confirmed before invitation. No gifted visits without deliverable.</span><span class="es">Evento de influencers: un grupo curado (puede ser algo mayor a 8–10 si tiene sentido, sin exagerar) con interés genuino en comida tailandesa. Cena dirigida, Exec Chef presente, menú completo. Compromiso de contenido confirmado antes de la invitación. Sin visitas regaladas sin entregable.</span></div><div class="task-meta"><span class="task-owner"><span class="en">MARKETING · HR/MKTG DIR · COMMUNITY MGR</span><span class="es">MARKETING · HR/MKTG DIR · COMMUNITY MGR</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH4-04</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Broader pre-opening groups (paying): expand to wider family networks, AMG partners, business contacts. Space multiple nights — do not overwhelm. Cadence: 25–35 covers per session, feedback form after each. Quality continues documenting against the standard and flagging any drift. Brand PM synthesizes feedback into action items between sessions.</span><span class="es">Grupos de pre-apertura más amplios (pagando): expandir a redes familiares más amplias, socios AMG, contactos de negocios. Espaciar varias noches — no abrumar. Cadencia: 25–35 cubiertos por sesión, formulario de retroalimentación después de cada una. Calidad continúa documentando contra el estándar y señalando desviaciones. El Brand PM sintetiza la retroalimentación en acciones entre sesiones.</span></div><div class="task-meta"><span class="task-owner"><span class="en">BRAND PM · DG · OPS DIR</span><span class="es">BRAND PM · DG · OPS DIR</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH4-05</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">First week sales target: generate real revenue from pre-opening groups. Target minimum MXN [TBD with Finance] in pre-opening week. Track covers, ticket average, revenue per session.</span><span class="es">Meta de ventas primera semana: generar ingresos reales de los grupos de pre-apertura. Meta mínima MXN [Por definir con Finanzas] en la semana de pre-apertura. Rastrear cubiertos, ticket promedio, ingresos por sesión.</span></div><div class="task-meta"><span class="task-owner"><span class="en">FINANCE DIR · BRAND PM · PURCHASING</span><span class="es">FINANCE DIR · BRAND PM · PURCHASING</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH4-06</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Google Maps fully optimized: profile complete, 20+ reviews collected (from soft open groups via QR code), hours, menu link, reservation link, photos uploaded. Target 4.5+ average before public opening.</span><span class="es">Google Maps completamente optimizado: perfil completo, 20+ reseñas recolectadas (de grupos de soft open via código QR), horarios, link de menú, link de reservación, fotos subidas. Meta 4.5+ promedio antes de apertura pública.</span></div><div class="task-meta"><span class="task-owner"><span class="en">MARKETING · SYSTEMS · OPS DIR</span><span class="es">MARKETING · SYSTEMS · OPS DIR</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH4-07</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Final punch list and deep clean before stocking: every physical detail verified by Quality. Maintenance leads the deep cleaning and familiarization with the space and equipment. Operations walks the floor and validates service flow. Done before any inventory or perishables come in — the venue is fully ready to receive product. Bathroom cleaning cadence established (every 30 min during service). All signage in place. Not one improvised element visible.</span><span class="es">Punch list final y limpieza profunda antes de surtir: cada detalle físico verificado por Calidad. Mantenimiento lidera la limpieza profunda y familiarización con el espacio y los equipos. Operaciones recorre el piso y valida el flujo de servicio. Esto se hace antes de que entre cualquier inventario o perecedero — la sucursal queda lista para recibir producto. Cadencia de limpieza de baños establecida (cada 30 min durante el servicio). Toda la señalética en su lugar. Ni un elemento improvisado visible.</span></div><div class="task-meta"><span class="task-owner"><span class="en">QUALITY · EXPANSION · MAINTENANCE</span><span class="es">QUALITY · EXPANSION · MAINTENANCE</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH4-08</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Press dinner: select journalists and food media. The chef's story and the Culinary Advisor's direction lead the narrative. Media kit delivered in advance. Full documentation: photos, video, Exec Chef and Culinary Advisor available for brief interviews.</span><span class="es">Cena de prensa: periodistas selectos y medios de gastronomía. La historia de la chef y la dirección culinaria del Asesor Culinario lideran la narrativa. Media kit entregado con anticipación. Documentación completa: fotos, video, Chef Ejecutiva y Asesor Culinario disponibles para breves entrevistas.</span></div><div class="task-meta"><span class="task-owner"><span class="en">HR/MKTG DIR · MARKETING · DG</span><span class="es">HR/MKTG DIR · MARKETING · DG</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase">
+      <div class="phase-head">
+        <div class="phase-badge ph5"><span class="en">Phase 5</span><span class="es">Fase 5</span></div>
+        <div class="phase-head-main">
+          <div class="phase-head-title"><span class="en">Grand Opening &amp; First 30 Days</span><span class="es">Gran Apertura y Primeros 30 Días</span></div>
+          <div class="phase-head-dates"><span class="en">August 3 onward · Weeks 10–13</span><span class="es">3 de Agosto en adelante · Semanas 10–13</span></div>
+        </div>
+        <div class="phase-prog-wrap">
+          <div class="phase-prog-pct" id="pct-5">0%</div>
+          <div class="phase-prog-bar"><div class="phase-prog-fill tf-5" id="bar-5"></div></div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal-text"><span class="en">Grand Opening executed flawlessly. First 30 days are critical — controlled cadence, not chaos. Continue adjusting and polishing daily. KPIs tracked from Day 1. Monday Report begins immediately. First weekly special introduced at Week 4 post-opening (not before — earn the right). Delivery platforms may stay off at launch and be switched on later as part of the ramp-up. Every problem resolved within 24 hours. A dedicated post-opening operational playbook begins at Week 3.</span><span class="es">Gran Apertura ejecutada impecablemente. Los primeros 30 días son críticos — cadencia controlada, no caos. Continuar ajustando y puliendo cada día. KPIs rastreados desde el Día 1. Reporte del Lunes comienza de inmediato. Primer especial semanal introducido en la Semana 4 post-apertura (no antes — ganarse el derecho). Las plataformas de delivery pueden permanecer apagadas al inicio y activarse después como parte del ramp-up. Cada problema resuelto en 24 horas. Un playbook operativo post-apertura dedicado comienza en la Semana 3.</span></div>
+        <div class="task-list" data-phase="5">
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH5-01</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Grand Opening executed: the first public service, treated as a flagship moment with key guests and partners invited. Exec Chef present — this is her restaurant. Key corporate team present. Full team in uniform. Every detail checked before doors open. Document everything: photos, video, covers, revenue, reviews collected same night.</span><span class="es">Gran Apertura ejecutada: primer servicio VIP. Exec Chef presente — este es su restaurante. Equipo corporativo clave presente. Equipo completo en uniforme. Cada detalle revisado antes de abrir las puertas. Documentar todo: fotos, video, cubiertos, ingresos, reseñas de Google recolectadas esa misma noche.</span></div><div class="task-meta"><span class="task-owner"><span class="en">DG · BRAND PM · OPS DIR · EXEC CHEF</span><span class="es">DG · BRAND PM · OPS DIR · EXEC CHEF</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH5-02</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Day 1–7: Orderly cadence — do not overwhelm the kitchen. Manage reservations carefully. Each day debrief: what worked, what didn't, correct immediately. Team morale is a metric.</span><span class="es">Días 1–7: Cadencia ordenada — no abrumar la cocina. Manejar reservaciones con cuidado. Debrief cada día: qué funcionó, qué no, corregir de inmediato. La moral del equipo es una métrica.</span></div><div class="task-meta"><span class="task-owner"><span class="en">OPS DIR · OPS MGR · EXEC CHEF · CULTURE</span><span class="es">OPS DIR · OPS MGR · EXEC CHEF · CULTURE</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH5-03</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Monday Report begins immediately — first report June 8, 2026. The Brand PM delivers every Monday without exception. During pre-opening: objectives status, blockers, big win, decisions needed. KPIs are added once we open.</span><span class="es">El Reporte del Lunes comienza de inmediato — primer reporte el 8 de junio de 2026. El Brand PM entrega cada lunes sin excepción. Durante la pre-apertura: estado de objetivos, bloqueadores, gran logro, decisiones necesarias. Los KPIs se agregan al abrir.</span></div><div class="task-meta"><span class="task-owner"><span class="en">BRAND PM</span><span class="es">BRAND PM</span></span><span class="task-priority p-crit"><span class="en">CRITICAL</span><span class="es">CRÍTICO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH5-04</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Google review push: NO QR codes on tables — a server carries a QR to offer when a guest is happy and willing to leave a review. Servers trained to ask naturally after positive interactions. Target 50 reviews in 30 days. Monitor and respond to every review within 24h.</span><span class="es">Campaña de reseñas Google: SIN códigos QR en las mesas — un mesero carga un QR para ofrecerlo cuando un comensal está contento y dispuesto a dejar reseña. Meseros entrenados para pedir naturalmente tras interacciones positivas. Meta 50 reseñas en 30 días. Monitorear y responder cada reseña en 24h.</span></div><div class="task-meta"><span class="task-owner"><span class="en">MARKETING · OPS DIR · COMMUNITY MGR</span><span class="es">MARKETING · OPS DIR · COMMUNITY MGR</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH5-05</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Week 4 post-opening: introduce first weekly special (not before). The Exec Chef designs it — a regional Thai dish, seasonal ingredient, or reinvention. Track sell-through and feedback. This is what keeps the menu alive.</span><span class="es">Semana 4 post-apertura: introducir primer especial semanal (no antes). La Chef Ejecutiva lo diseña — un platillo tailandés regional, ingrediente de temporada, o reinvención. Rastrear tasa de venta y retroalimentación. Esto es lo que mantiene vivo el menú.</span></div><div class="task-meta"><span class="task-owner"><span class="en">EXEC CHEF · CULINARY ADVISOR · OPS DIR</span><span class="es">EXEC CHEF · CULINARY ADVISOR · OPS DIR</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH5-06</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Week 3: Begin post-opening operational playbook — a new document for a new phase. This master program ends; operational management begins. Transition ownership to Ops Dir and Brand PM.</span><span class="es">Semana 3: Iniciar el playbook operativo post-apertura — un nuevo documento para una nueva fase. Este programa maestro termina; comienza la gestión operativa. Transferir ownership a Dir Ops y Brand PM.</span></div><div class="task-meta"><span class="task-owner"><span class="en">DG · BRAND PM · OPS DIR</span><span class="es">DG · BRAND PM · OPS DIR</span></span><span class="task-priority p-med"><span class="en">MEDIUM</span><span class="es">MEDIO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH5-07</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Daily quality and service audit during the first 30 days: Quality checks plating, speed, cleanliness, and guest experience against the standard every service. Issues logged and fixed within 24 hours. Step back and re-drill when a pattern appears.</span><span class="es">Auditoría diaria de calidad y servicio durante los primeros 30 días: Calidad revisa emplatado, velocidad, limpieza y experiencia del comensal contra el estándar en cada servicio. Issues registrados y corregidos en 24 horas. Dar un paso atrás y re-entrenar cuando aparece un patrón.</span></div><div class="task-meta"><span class="task-owner"><span class="en">QUALITY · OPS DIR · EXEC CHEF</span><span class="es">QUALITY · OPS DIR · EXEC CHEF</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+          <div class="task-row" onclick="toggleTask(this)">
+            <div class="task-code">PH5-08</div><div class="task-check-box"></div>
+            <div class="task-content"><div class="task-text"><span class="en">Controlled demand ramp: manage covers and reservations (if any) so the kitchen and floor are never overwhelmed. Invite guests in an orderly cadence, adjust flow daily, and increase volume only once quality holds steady. Decide week by week whether to switch on delivery platforms.</span><span class="es">Ramp de demanda controlado: gestionar cubiertos y reservaciones (si hay) para que cocina y piso nunca se saturen. Invitar comensales en una cadencia ordenada, ajustar el flujo a diario, y aumentar volumen solo cuando la calidad se mantenga estable. Decidir semana a semana si se activan las plataformas de delivery.</span></div><div class="task-meta"><span class="task-owner"><span class="en">OPS DIR · BRAND PM · EXEC CHEF</span><span class="es">OPS DIR · BRAND PM · EXEC CHEF</span></span><span class="task-priority p-high"><span class="en">HIGH</span><span class="es">ALTO</span></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<div class="section-sep"></div>
+
+<!-- S04: CULINARY -->
+<section class="section" id="s04">
+  <div class="section-hd">
+    <div class="section-num">04</div>
+    <div class="section-hd-text">
+      <div class="section-title"><span class="en">Culinary Direction</span><span class="es">Dirección Culinaria</span></div>
+      <div class="section-sub"><span class="en">The Non-Negotiable Core · Open Kitchen Standards</span><span class="es">El Núcleo No Negociable · Estándares de Cocina Abierta</span></div>
+    </div>
+  </div>
+
+  <div class="insight insight-standard">
+    <div>
+      <div class="insight-label"><span class="en">⚑ Philosophy</span><span class="es">⚑ Filosofía</span></div>
+      <div class="insight-body"><span class="en">70% uncompromised Thai classics. 30% reinvention that earns its place. Heat level is specified for every dish on the menu and in service. Our Thai chef's perspective is the concept's strategic differentiator — it is not decoration, it is the product. Think outside the box; details matter. The KK experience must be created, not assembled.</span><span class="es">70% clásicos tailandeses sin concesiones. 30% reinvención que se gana su lugar. El nivel de picante se especifica para cada platillo en el menú y en el servicio. La perspectiva de nuestra chef tailandesa es el diferenciador estratégico del concepto — no es decoración, es el producto. Pensar fuera de la caja; los detalles importan. La experiencia KK debe ser creada, no ensamblada.</span></div>
+    </div>
+  </div>
+
+  <div class="card-grid" style="margin-top:32px;">
+    <div class="card">
+      <div class="card-icon">🍽️</div>
+      <div class="card-title">Menu Architecture</div>
+      <div class="card-body"><span class="en">5–6 appetizers · 2 soups · 3–4 salads · 6–8 mains · 3–4 desserts · 1 rotating weekly special (starts Week 4 post-opening). Sharing format. Printed menu final before Phase 3. Identify 3–4 naturally mild/accessible dishes for families — no separate kids menu, no nuggets.</span><span class="es">5–6 entradas · 2 sopas · 3–4 ensaladas · 6–8 platos fuertes · 3–4 postres · 1 especial semanal rotativo (inicia Semana 4 post-apertura). Formato para compartir. Menú impreso y final antes de la Fase 3. Identificar 3–4 platillos naturalmente suaves/accesibles para familias — sin menú infantil separado, sin nuggets.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">💡</div>
+      <div class="card-title">Suggested Signature Dishes</div>
+      <div class="card-body"><span class="en">For the Exec Chef's consideration: Khao Soi (northern curry noodle, reinvented) · Larb with heirloom pork · Thai-style ceviche with nam jim · Mango sticky rice elevated with coconut foam · Pad Kra Pao with farm egg · Green papaya salad live-station · Grilled river prawn with three-chili sauce.</span><span class="es">Para consideración de la Chef Ejecutiva: Khao Soi (fideos con curry del norte, reinventado) · Larb con cerdo artesanal · ceviche estilo tailandés con nam jim · arroz pegajoso con mango elevado con espuma de coco · Pad Kra Pao con huevo de rancho · ensalada de papaya verde en estación en vivo · camarón de río a la parrilla con salsa de tres chiles.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🥤</div>
+      <div class="card-title">Drinks — Alcoholic</div>
+      <div class="card-body"><span class="en">Thai-character cocktails: lemongrass gin fizz, butterfly pea flower margarita, galangal mezcal sour, tamarind whisky sour, Thai basil smash. Rotating seasonal cocktail. Curated beers (Singha + local craft), wine by the glass. Bar amplifies food — not independent from it. CRITICAL: the alcohol permit must be in place to sell cocktails from Week 1 — Legal owns this on the critical path.</span><span class="es">Cócteles con carácter tailandés: gin fizz de lemongrass, margarita de flor de chícharo mariposa, mezcal sour de galangal, whisky sour de tamarindo, smash de albahaca tailandesa. Cóctel de temporada rotativo. Cervezas curadas (Singha + artesanal local), vino por copa. El bar amplifica la comida — no es independiente de ella. CRÍTICO: el permiso de alcohol debe estar listo para vender cócteles desde la Semana 1 — Legal es dueño de esto en la ruta crítica.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🍹</div>
+      <div class="card-title">Drinks — Non-Alcoholic</div>
+      <div class="card-body"><span class="en">Original ideas: dragon fruit slushie with tajín rim · lychee agua fresca with rose · tamarind-chili lemonade · young coconut water with pandan · Thai iced tea (cha yen, house blend) · chrysanthemum cooler. Soft serve: Thai tea as permanent fixture. These are signatures — not afterthoughts.</span><span class="es">Ideas originales: slushie de fruta del dragón con borde de tajín · agua fresca de lychee con rosa · limonada de tamarindo y chile · agua de coco joven con pandan · té tailandés helado (cha yen, blend de la casa) · cooler de crisantemo. Soft serve: té tailandés como permanente. Estas son firmas — no ideas de último momento.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎁</div>
+      <div class="card-title">Welcome Detail</div>
+      <div class="card-body"><span class="en">A complimentary opening botana for every table — a small Thai-inspired courtesy, similar in spirit to what Mekong does. The Exec Chef must validate the idea first; if she doesn't see it working, we drop it. Reference concepts: crispy rice with larb mousse · cucumber cup with spicy coconut cream · one perfect fish cake. Costs almost nothing, signals everything.</span><span class="es">Una botana de bienvenida de cortesía para cada mesa — un pequeño detalle de inspiración tailandesa, en el espíritu de lo que hace Mekong. La Chef Ejecutiva debe validar la idea primero; si no la ve funcionar, se cancela. Conceptos de referencia: arroz crujiente con mousse de larb · vaso de pepino con crema de coco picante · un fish cake perfecto. Cuesta casi nada, lo dice todo.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔥</div>
+      <div class="card-title">Open Kitchen Standards</div>
+      <div class="card-body"><span class="en">Full visibility = full accountability. Chef whites always clean and pressed. Stations organized and labeled. No personal items, phones, or clutter visible. Hand hygiene practiced visibly. Food handling protocols followed perfectly — guests watch everything. Cleaning happens between every service, not after.</span><span class="es">Visibilidad total = responsabilidad total. Uniformes de chef siempre limpios y planchados. Estaciones organizadas y etiquetadas. Sin artículos personales, teléfonos o desorden visible. Higiene de manos practicada de forma visible. Protocolos de manejo de alimentos seguidos perfectamente — los comensales ven todo. La limpieza ocurre entre cada servicio, no después.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧹</div>
+      <div class="card-title">Cleaning &amp; Hygiene Protocol</div>
+      <div class="card-body"><span class="en">Bathroom check every 30 min during service (logged). Kitchen deep-clean daily post-service. Station wipe-down between every cover turn. Open kitchen floor spotless at all times. Dishpit organized and efficient — dishwashers are frontline quality. Quality audit weekly.</span><span class="es">Revisión de baños cada 30 min durante el servicio (registrado). Limpieza profunda de cocina diariamente post-servicio. Limpieza de estaciones entre cada turno de mesa. Piso de cocina abierta impecable en todo momento. Área de lavado organizada y eficiente — los lavaplatos son la primera línea de calidad. Calidad auditan semanalmente.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏭</div>
+      <div class="card-title">CDP Coordination</div>
+      <div class="card-body"><span class="en">Define clearly: what preps happen centrally vs. on-site. CDP and Planning align with the Exec Chef before menu standardization is final. Tiin Thai production must not conflict with KK schedule. Shared suppliers are an opportunity — not a complication — if planned correctly.</span><span class="es">Definir claramente: qué preparaciones ocurren centralmente vs. en sitio. CDP y Planeación se alinean con la Chef Ejecutiva antes de que la estandarización del menú sea final. La producción de Tiin Thai no debe entrar en conflicto con el cronograma de KK. Los proveedores compartidos son una oportunidad — no una complicación — si se planea correctamente.</span></div>
+    </div>
+  </div>
+
+  <div class="insight insight-warning" style="margin-top:24px;">
+    <div>
+      <div class="insight-label">⚠ Critical Dependency</div>
+      <div class="insight-body"><span class="en">Menu costing (EA) must be complete before financial projections are final. Target food cost 28–32% per dish. Any dish above this gets repriced or redesigned — not absorbed. Cocktail costs are typically lower (18–25%) — factor this into the blended cost model with Finance.</span><span class="es">El costeo del menú (EA) debe estar completo antes de que las proyecciones financieras sean finales. Meta de costo de alimentos 28–32% por platillo. Cualquier platillo por encima de esto se reprecía o rediseña — no se absorbe. Los costos de cócteles son típicamente más bajos (18–25%) — factorizar esto en el modelo de costo combinado con Finanzas.</span></div>
+    </div>
+  </div>
+</section>
+<div class="section-sep"></div>
+
+<!-- S05: HOSPITALITY -->
+<section class="section" id="s05">
+  <div class="section-hd">
+    <div class="section-num">05</div>
+    <div class="section-hd-text">
+      <div class="section-title"><span class="en">Hospitality Standard</span><span class="es">Estándar de Hospitalidad</span></div>
+      <div class="section-sub"><span class="en">Service Doctrine · Thai Culture · The CDMX Gap</span><span class="es">Doctrina de Servicio · Cultura Tailandesa · El Hueco en CDMX</span></div>
+    </div>
+  </div>
+
+  <div class="insight insight-standard">
+    <div>
+      <div class="insight-label"><span class="en">⚑ Doctrine — Danny Meyer Principle</span><span class="es">⚑ Doctrina — Principio Danny Meyer</span></div>
+      <div class="insight-body"><span class="en">Guests must leave feeling they received more than they gave. Service is warmth with precision — not a robotic sequence. Thailand is called "The Land of Smiles" — genuine warmth, not performative. The Wai (ไหว้) — the Thai greeting with palms pressed together and a slight bow — is a gesture of respect and hospitality. Adapt it naturally into how KK staff greet guests. It doesn't need to be theatrical — it needs to be genuine.</span><span class="es">Los comensales deben irse sintiendo que recibieron más de lo que dieron. El servicio es calidez con precisión — no una secuencia robótica. Tailandia es llamada 'La Tierra de las Sonrisas' — calidez genuina, no performativa. El Wai (ไหว้) — el saludo tailandés con las palmas juntas y una leve inclinación — es un gesto de respeto y hospitalidad. Adaptarlo naturalmente a cómo el personal de KK recibe a los comensales. No necesita ser teatral — necesita ser genuino.</span></div>
+    </div>
+  </div>
+
+  <div class="card-grid" style="margin-top:32px;">
+    <div class="card card-accent">
+      <div class="card-icon">🏆</div>
+      <div class="card-title">The Galanga Gap — Our Opportunity</div>
+      <div class="card-body"><span class="en">Reviews reveal: slow drinks (15+ min), servers avoiding eye contact, inconsistent service, dietary requests ignored. All correctable with training and attention. Before opening, visit similar spots (Thai and comparable concepts), observe, take notes, and decide what's worth implementing. We win by being consistently excellent where they are inconsistently good.</span><span class="es">Las reseñas revelan: bebidas lentas (+15 min), meseros evitando contacto visual, servicio inconsistente, solicitudes dietéticas ignoradas. Todo corregible con entrenamiento y atención. Antes de abrir, visitar lugares similares (Thai y conceptos comparables), observar, tomar notas y decidir qué vale la pena implementar. Ganamos siendo consistentemente excelentes donde ellos son inconsistentemente buenos.</span></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">Speed Standards (Non-Negotiable)</div>
+      <div class="card-body"><span class="en">Greeting: &lt;60 sec. First drink: &lt;4 min from seated. Welcome detail: &lt;6 min. First shared dish: &lt;10 min. Entrée: &lt;15 min from order. Check requested: &lt;90 sec. Table turn target: 60–70 min average. These are tracked from Day 1. If a session misses consistently, we find out why that session — not next week.</span><span class="es">Saludo: &lt;60 seg. Primera bebida: &lt;4 min desde que se sientan. Detalle de bienvenida: &lt;6 min. Primer platillo compartido: &lt;10 min. Plato fuerte: &lt;15 min desde la orden. Cuenta entregada &lt;90 seg después de solicitarla. Meta de rotación de mesa: 60–70 min promedio. El stack tecnológico (POS, orden en mesa, display de cocina) es decisivo para alcanzar estos tiempos. Se rastrean desde el Día 1. Si una sesión falla consistentemente, averiguamos por qué en esa sesión — no la próxima semana.</span></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-icon">📖</div>
+      <div class="card-title">Dish Storytelling</div>
+      <div class="card-body"><span class="en">Every server knows 3 things per dish: what it is, where it's from in Thailand, what makes our version distinct. Not memorized from a sheet — experienced through the tasting session. When a guest asks "what's good?" the answer is specific, enthusiastic, and personal. "The Khao Soi is our take on a Chiang Mai specialty — the double noodle texture is unlike anything in CDMX."</span><span class="es">Cada mesero conoce 3 cosas por platillo: qué es, de dónde es en Tailandia, qué hace distinta nuestra versión. No memorizado de una hoja — experimentado a través de la cata. Cuando un comensal pregunta '¿qué está bueno?' la respuesta es específica, entusiasta y personal. 'El Khao Soi es nuestra versión de un platillo especialidad de Chiang Mai — la textura de fideos dobles no tiene igual en CDMX.'</span></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-icon">🌶️</div>
+      <div class="card-title">Spice Management</div>
+      <div class="card-body"><span class="en">Common complaint at Thai restaurants: heat is unpredictable, guests feel unsafe ordering. At KK: proactively describe heat levels for every dish. "This one has a slow build" vs "this one is immediate heat." Never let a guest be surprised by fire. Trust earned = more adventurous ordering = higher ticket.</span><span class="es">Queja común en restaurantes tailandeses: el picante es impredecible, los comensales se sienten inseguros al ordenar. En KK: describir proactivamente los niveles de picante de cada platillo. 'Este tiene un build lento' vs 'este es calor inmediato.' Nunca dejar que un comensal sea sorprendido por el fuego. Confianza ganada = órdenes más aventureras = ticket más alto.</span></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-icon">👁️</div>
+      <div class="card-title">Presence on the Floor</div>
+      <div class="card-body"><span class="en">Guests waiting acknowledged within 30 seconds — eye contact, they've been seen. Offer a complimentary drink in a glass while they wait (as seen at Campomar) — a courtesy that starts the visit right and earns tolerance for the wait. No guest sits with an empty water glass for more than 2 minutes. Plates cleared promptly — never stacked visibly at the table. Check presented naturally when the flow suggests it, not robotically.</span><span class="es">Comensales esperando reconocidos en 30 segundos — contacto visual, fueron vistos. Ofrecer una bebida de cortesía en vaso mientras esperan (como se ve en Campomar) — un detalle que arranca la visita con el pie derecho y gana tolerancia para la espera. Ningún comensal se queda con un vaso de agua vacío por más de 2 minutos. Platos retirados prontamente — nunca apilados visiblemente en la mesa. Cuenta presentada naturalmente cuando el flujo lo sugiere, no robóticamente.</span></div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-icon">🔄</div>
+      <div class="card-title">Dietary Handling</div>
+      <div class="card-body"><span class="en">Dietary handling is critical — a frequent failure point at competitors. At KK: every dietary restriction confirmed by the server and communicated to the kitchen on every ticket. Vegan/vegetarian dishes clearly marked. The Exec Chef designates which dishes can be adapted. Zero tolerance for serving the wrong thing — a trust and safety issue, not a preference.</span><span class="es">El manejo dietético es crítico — un punto de falla frecuente en competidores. En KK: cada restricción dietética confirmada por el mesero y comunicada a la cocina en cada ticket. Platillos veganos/vegetarianos claramente marcados. La Chef Ejecutiva designa qué platillos pueden adaptarse. Tolerancia cero para servir lo incorrecto — es un tema de confianza y seguridad, no una preferencia.</span></div>
+    </div>
+  </div>
+</section>
+<div class="section-sep"></div>
+
+<!-- S06: MARKETING -->
+<section class="section" id="s06">
+  <div class="section-hd">
+    <div class="section-num">06</div>
+    <div class="section-hd-text">
+      <div class="section-title"><span class="en">Marketing &amp; Commercial</span><span class="es">Marketing y Comercial</span></div>
+      <div class="section-sub"><span class="en">Marketing &amp; Commercial · Build Anticipation Before the Doors Open</span><span class="es">Marketing y Comercial · Construir Anticipación Antes de Abrir</span></div>
+    </div>
+  </div>
+
+  <div style="background:var(--green);border-radius:12px;padding:28px;margin-bottom:32px;">
+    <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:4px;color:var(--yellow);text-transform:uppercase;margin-bottom:12px;"><span class="en">⚑ PURPOSE</span><span class="es">⚑ PROPÓSITO</span></div>
+    <div style="font-family:var(--f-display);font-size:clamp(18px,2.5vw,26px);color:var(--cream);line-height:1.3;">
+      <span class="en">Kab Khao opens on August 3, 2026 at full operational capacity — kitchen validated, team trained and certified, permits in place, financial infrastructure live, and a hospitality standard that makes it the reference casual Thai eatery in CDMX within 60 days of opening.</span>
+      <span class="es">Kab Khao abre el 3 de agosto de 2026 con capacidad operativa completa — cocina validada, equipo entrenado y certificado, permisos en orden, infraestructura financiera activa y un estándar de hospitalidad que lo convierte en el restaurante Thai casual de referencia en CDMX dentro de los 60 días de apertura.</span>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">📅</div>
+      <div class="card-title">Content Calendar</div>
+      <div class="card-body"><span class="en">Weeks 1–4: Behind-the-scenes — space taking shape, the chef cooking remotely, team arriving. No formal launch. Weeks 5–6: First dish reveals, the chef's story, CDMX Thai food culture. Weeks 7–8: Countdown, soft-open teasers, influencer activations. Opening week: every day is content.</span><span class="es">El contenido es prioridad máxima — acertar en el tipo y estilo de contenido es decisivo para el lanzamiento; definir el estilo y estándar temprano, no se improvisa. Semanas 1–4: detrás de cámaras — espacio tomando forma, la chef cocinando, equipo llegando. Semanas 5–6: primeras revelaciones de platillos, la historia de la chef, cultura gastronómica Thai en CDMX. Semanas 7–8: cuenta regresiva, teasers de soft opening, activaciones de influencers. Semana de apertura: cada día es contenido.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤳</div>
+      <div class="card-title">Influencer Strategy</div>
+      <div class="card-body"><span class="en">8–10 influencers for Soft Opening Day 2. Selection: genuine Thai food interest, not just follower count. Mix of food journalists, content creators, CDMX tastemakers. No gifted visits without content commitment and confirmed posting date. The chef's story is the anchor — not the restaurant's decor.</span><span class="es">8–10 influencers para el Soft Opening Día 2. Selección: interés genuino en comida tailandesa, no solo conteo de seguidores. Mix de periodistas gastronómicos, creadores de contenido, tastemakers de CDMX. Sin visitas regaladas sin compromiso de contenido y fecha de publicación confirmada. La historia de la chef es el ancla — no la decoración del restaurante.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⭐</div>
+      <div class="card-title">Google Review Velocity</div>
+      <div class="card-body"><span class="en">Target: 50 Google reviews in first 30 days, 4.5+ average before public opening. QR code at every table linking directly to Google review page. Servers trained to ask naturally after positive interactions. Monitor and respond to every review within 24h. Never incentivize reviews — earn them.</span><span class="es">Meta: 50 reseñas en Google en los primeros 30 días, promedio 4.5+ antes de la apertura pública. Código QR en cada mesa con link directo a la página de reseñas de Google. Meseros entrenados para pedir naturalmente después de interacciones positivas. Monitorear y responder cada reseña en 24h. Nunca incentivar reseñas — ganarlas.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📰</div>
+      <div class="card-title">PR Activation</div>
+      <div class="card-body"><span class="en">PR briefed by Week 5. Deliverables: press release, media kit with the chef's story and professional photos, editorial pitches to Chilango, Time Out CDMX, El Universal Más, food podcasts. The angle: "First authentic Thai eatery in CDMX with a true Thai chef" — that's the story.</span><span class="es">PR briefeado en Semana 5. Entregables: comunicado de prensa, media kit con la historia de la chef desde Tailandia y fotos profesionales, pitches editoriales a Chilango, Time Out CDMX, El Universal Más, podcasts de gastronomía. El ángulo: 'Primera eatery Thai auténtica en CDMX con una verdadera chef tailandesa' — esa es la historia.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚚</div>
+      <div class="card-title">Delivery Platforms</div>
+      <div class="card-body"><span class="en">Uber Eats, Rappi, DiDi Food — all live by Week 7. Professional photography, complete menus, accurate pricing. KK and Tiin Thai profiles clearly differentiated — different brand identity, different menu, different pricing. Never confuse the two.</span><span class="es">Uber Eats, Rappi, DiDi Food — todos en vivo en Semana 7. Fotografía profesional, menús completos, precios precisos. Perfiles de KK y Tiin Thai claramente diferenciados — identidad de marca diferente, menú diferente, precios diferentes. Nunca confundir los dos.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📸</div>
+      <div class="card-title">Photography Session</div>
+      <div class="card-body"><span class="en">Two distinct photography sessions with different timing and set-ups: <strong>(A) Food &amp; kitchen</strong> — all hero dishes, cocktails, slushies, soft serve, preps, welcome detail, plating. Requires menu locked and kitchen operational. <strong>(B) Space &amp; brand</strong> — interior, terrace, bar, open kitchen, signage, team portraits. Requires the space fully finished. Being ready for one doesn't mean ready for the other — plan each at the right moment. This content is the foundation of everything: menus, platforms, social, PR kit, OpenTable.</span><span class="es">Dos sesiones fotográficas distintas con timing y set-ups diferentes: <strong>(A) Comida y cocina</strong> — todos los platillos hero, cócteles, slushies, soft serve, preps, detalle de bienvenida, emplatado. Requiere menú bloqueado y cocina operativa. <strong>(B) Local y marca</strong> — interior, terraza, bar, cocina abierta, señalética, retratos del equipo. Requiere el espacio completamente terminado. Estar listos para una no significa estar listos para la otra — planear cada una en el momento correcto. Este contenido es la base de todo: menús, plataformas, redes sociales, kit de PR, OpenTable.</span></div>
+    </div>
+  </div>
+</section>
+<div class="section-sep"></div>
+
+<!-- S07: OPERATIONS -->
+<section class="section" id="s07">
+  <div class="section-hd">
+    <div class="section-num">07</div>
+    <div class="section-hd-text">
+      <div class="section-title"><span class="en">Operations &amp; Systems</span><span class="es">Operaciones y Sistemas</span></div>
+      <div class="section-sub"><span class="en">Operations · Systems · The Infrastructure That Makes Service Possible</span><span class="es">Operaciones · Sistemas · La Infraestructura que Hace Posible el Servicio</span></div>
+    </div>
+  </div>
+
+  <div style="background:var(--green);border-radius:12px;padding:28px;margin-bottom:32px;">
+    <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:4px;color:var(--yellow);text-transform:uppercase;margin-bottom:12px;"><span class="en">⚑ PURPOSE</span><span class="es">⚑ PROPÓSITO</span></div>
+    <div style="font-family:var(--f-display);font-size:clamp(18px,2.5vw,26px);color:var(--cream);line-height:1.3;">
+      <span class="en">Kab Khao opens on August 3, 2026 at full operational capacity — kitchen validated, team trained and certified, permits in place, financial infrastructure live, and a hospitality standard that makes it the reference casual Thai eatery in CDMX within 60 days of opening.</span>
+      <span class="es">Kab Khao abre el 3 de agosto de 2026 con capacidad operativa completa — cocina validada, equipo entrenado y certificado, permisos en orden, infraestructura financiera activa y un estándar de hospitalidad que lo convierte en el restaurante Thai casual de referencia en CDMX dentro de los 60 días de apertura.</span>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <div class="card-title">POS &amp; Tableside Tech</div>
+      <div class="card-body"><span class="en">Systems owns the technology stack — every tool and detail must be perfectly nailed, since tech is decisive for service speed. POS live and tested before Dummy Run 1. Tableside ordering (if deployed) fully integrated with kitchen display. Staff trained on POS before Phase 3 — no learning during service. Every failure mode tested: offline mode, split checks, modifiers.</span><span class="es">Sistemas es dueño del stack tecnológico — cada herramienta y detalle debe estar perfectamente afinado, porque la tecnología es decisiva para la velocidad de servicio. POS en vivo y probado antes del Dummy Run 1. Orden en mesa (si se despliega) completamente integrado con display de cocina. Personal entrenado en POS antes de la Fase 3 — sin aprendizaje durante el servicio. Cada modo de falla probado: modo offline, cuentas divididas, modificadores.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <div class="card-title">Operations Manual</div>
+      <div class="card-body"><span class="en">Complete before Dummy Run 1: opening/closing checklists, station setup guide, cleaning schedules, maintenance cards for every equipment piece, bathroom cleaning log (every 30 min), shift debrief template. Operations and Maintenance receive handover and training on every piece of equipment from Expansion before opening.</span><span class="es">Completo antes del Dummy Run 1: listas de apertura/cierre, guía de setup de estaciones, horarios de limpieza, tarjetas de mantenimiento para cada pieza de equipo, registro de limpieza de baños (cada 30 min), plantilla de debrief de turno. Operaciones y Mantenimiento reciben handover y capacitación sobre cada pieza de equipo por parte de Expansión antes de abrir.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📅</div>
+      <div class="card-title">Reservations Policy</div>
+      <div class="card-body"><span class="en">Defined before soft opens: max party size (suggest 8), booking window (suggest 2 weeks out), cancellation policy (48h notice), waitlist management, walk-in allocation (suggest 30% of capacity). No-show policy documented. Pre-opening waitlist activated Week 7.</span><span class="es">Definido antes de los soft opens: tamaño máximo de grupo (sugerir 8), ventana de reservación (sugerir 2 semanas de anticipación), política de cancelación (48h de aviso), gestión de lista de espera, asignación de walk-ins (sugerir 30% de la capacidad). Política de no-show documentada. Lista de espera de pre-apertura activada Semana 7.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎵</div>
+      <div class="card-title">Music &amp; Ambience</div>
+      <div class="card-body"><span class="en">Curated playlists per daypart: lunch (upbeat, energy), afternoon (relaxed, jazzy), dinner (vibrant but not loud), weekend (slightly more energy). Volume levels calibrated — loud enough to feel alive, never louder than conversation. This is decided before Phase 3, not improvised.</span><span class="es">Playlists curadas por momento del día: comida (animado, con energía), tarde (relajado, jazzy), cena (vibrante pero no ruidoso), fin de semana (un poco más de energía). Niveles de volumen calibrados — suficientemente alto para sentirse vivo, nunca más alto que la conversación. Se decide antes de la Fase 3, no se improvisa.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔐</div>
+      <div class="card-title">Cash &amp; Financial Security</div>
+      <div class="card-body"><span class="en">Safe installed before Grand Opening. Opening float confirmed with Finance. Cash handling protocol documented and trained. Insurance contracted. All financial infrastructure Day-1 ready — no improvising.</span><span class="es">Caja fuerte instalada antes de la Gran Apertura. Fondo de apertura confirmado con Finanzas. Protocolo de manejo de efectivo documentado y entrenado. Seguro contratado. Toda la infraestructura financiera lista el Día 1 — sin improvisar.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🗑️</div>
+      <div class="card-title">Waste &amp; Utilities</div>
+      <div class="card-body"><span class="en">Trash collection schedule confirmed with Juan Ramón (CDMX protocol). Waste tracking from Day 1: food waste target &lt;3% of purchases. Utilities (gas, water, electricity) metered and baselined before opening for P&amp;L accuracy.</span><span class="es">Horario de recolección de basura confirmado con Juan Ramón (protocolo CDMX). Seguimiento de desperdicio desde el Día 1: meta de desperdicio de alimentos &lt;3% de las compras. Servicios (gas, agua, electricidad) medidos y establecidos como base antes de abrir para precisión del P&amp;L.</span></div>
+    </div>
+  </div>
+</section>
+<div class="section-sep"></div>
+
+<!-- S08: FINANCE -->
+<section class="section" id="s08">
+  <div class="section-hd">
+    <div class="section-num">08</div>
+    <div class="section-hd-text">
+      <div class="section-title"><span class="en">Finance &amp; Fiscal</span><span class="es">Finanzas y Fiscal</span></div>
+      <div class="section-sub"><span class="en">Finance · Legal · Fiscal Advisors · The Model That Validates Everything</span><span class="es">Finanzas · Legal · Asesores Fiscales · El Modelo que Valida Todo</span></div>
+    </div>
+  </div>
+
+  <div class="insight insight-warning">
+    <div>
+      <div class="insight-label"><span class="en">⚠ Model Dependency</span><span class="es">⚠ Dependencia del Modelo</span></div>
+      <div class="insight-body"><span class="en">The org chart, headcount, and labor structure cannot be finalized until the financial model is validated with the projected ticket average, occupancy rate, and table turns. Any projection above 22% labor cost requires headcount review before signing contracts. Target 20% net margin after AMG fee (~8% of net sales).</span><span class="es">El organigrama, la dotación de personal y la estructura laboral no pueden finalizarse hasta que el modelo financiero sea validado con el ticket promedio proyectado, tasa de ocupación y rotaciones de mesa. Cualquier proyección por encima del 22% de costo laboral requiere revisión de headcount antes de firmar contratos. Meta de 20% de margen neto después del fee AMG (~8% de ventas netas).</span></div>
+    </div>
+  </div>
+
+  <div class="fin-grid">
+    <div class="fin-card">
+      <div class="fin-label"><span class="en">Net Margin Target</span><span class="es">Meta de Margen Neto</span></div>
+      <div class="fin-val">20%</div>
+      <div class="fin-note"><span class="en">After all costs + AMG fee</span><span class="es">Después de todos los costos + fee AMG</span></div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-label"><span class="en">AMG Fee</span><span class="es">Fee AMG</span></div>
+      <div class="fin-val">~8%</div>
+      <div class="fin-note"><span class="en">Of net sales · TBD final</span><span class="es">De ventas netas · Por definir final</span></div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-label"><span class="en">Food Cost Target</span><span class="es">Meta Costo de Alimentos</span></div>
+      <div class="fin-val">28–32%</div>
+      <div class="fin-note"><span class="en">Kitchen items</span><span class="es">Artículos de cocina</span></div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-label"><span class="en">Cocktail Cost</span><span class="es">Costo Cócteles</span></div>
+      <div class="fin-val">18–25%</div>
+      <div class="fin-note"><span class="en">Blends favorably</span><span class="es">Mezcla favorablemente</span></div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-label"><span class="en">Labor · Stretch</span><span class="es">Labor · Stretch</span></div>
+      <div class="fin-val">15–17%</div>
+      <div class="fin-note"><span class="en">Aspirational target</span><span class="es">Meta aspiracional</span></div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-label"><span class="en">Labor · Operational</span><span class="es">Labor · Operativo</span></div>
+      <div class="fin-val">20–22%</div>
+      <div class="fin-note"><span class="en">Realistic floor</span><span class="es">Piso realista</span></div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-label"><span class="en">Break-Even Target</span><span class="es">Meta Punto de Equilibrio</span></div>
+      <div class="fin-val">3 mo</div>
+      <div class="fin-note"><span class="en">From Grand Opening</span><span class="es">Desde Gran Apertura</span></div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-label"><span class="en">Daily Covers Target</span><span class="es">Meta Cubiertos Diarios</span></div>
+      <div class="fin-val">60+</div>
+      <div class="fin-note"><span class="en">By Week 4 post-opening</span><span class="es">Para Semana 4 post-apertura</span></div>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--f-display);font-size:22px;color:var(--cream);margin:32px 0 16px;"><span class="en">P&amp;L Structure Reference</span><span class="es">Referencia de Estructura P&amp;L</span></h3>
+  <table class="fin-table">
+    <thead><tr><th><span class="en">Cost Category</span><span class="es">Categoría de Costo</span></th><th>Target %</th><th><span class="en">Type</span><span class="es">Tipo</span></th><th><span class="en">Owner</span><span class="es">Responsable</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="en">Food Cost (kitchen)</span><span class="es">Costo de Alimentos (cocina)</span></td><td>28–32%</td><td><span class="fin-tag fin-tag-food"><span class="en">VARIABLE</span><span class="es">VARIABLE</span></span></td><td><span class="en">Exec Chef · EA · Purchasing</span><span class="es">Chef Ejecutiva · EA · Compras</span></td></tr>
+      <tr><td><span class="en">Beverage Cost (bar)</span><span class="es">Costo de Bebidas (bar)</span></td><td>18–25%</td><td><span class="fin-tag fin-tag-food"><span class="en">VARIABLE</span><span class="es">VARIABLE</span></span></td><td><span class="en">Culinary Advisor · EA</span><span class="es">Asesor Culinario · EA</span></td></tr>
+      <tr><td><span class="en">Labor (wages + benefits)</span><span class="es">Nómina (salarios + prestaciones)</span></td><td>20–22%</td><td><span class="fin-tag fin-tag-labor"><span class="en">SEMI-FIXED</span><span class="es">SEMI-FIJO</span></span></td><td><span class="en">Finance · HR/Mktg Dir</span><span class="es">Finanzas · Dir RRHH/Mktg</span></td></tr>
+      <tr><td><span class="en">Rent &amp; Occupancy</span><span class="es">Renta y Ocupación</span></td><td>~10–12%</td><td><span class="fin-tag fin-tag-other"><span class="en">FIXED</span><span class="es">FIJO</span></span></td><td><span class="en">Finance · Expansion</span><span class="es">Finanzas · Expansión</span></td></tr>
+      <tr><td><span class="en">Utilities (gas, water, electric)</span><span class="es">Servicios (gas, agua, electricidad)</span></td><td>3–4%</td><td><span class="fin-tag fin-tag-other">SEMI-FIXED</span></td><td><span class="en">Ops Dir · Finance</span><span class="es">Dir Ops · Finanzas</span></td></tr>
+      <tr><td><span class="en">Marketing &amp; PR</span><span class="es">Marketing y PR</span></td><td>3–5%</td><td><span class="fin-tag fin-tag-other">VARIABLE</span></td><td><span class="en">HR/Mktg Dir · Finance</span><span class="es">Dir RRHH/Mktg · Finanzas</span></td></tr>
+      <tr><td><span class="en">Supplies &amp; Smallwares</span><span class="es">Suministros y Utensilios</span></td><td>1–2%</td><td><span class="fin-tag fin-tag-other">VARIABLE</span></td><td><span class="en">Purchasing · Ops Dir</span><span class="es">Compras · Dir Ops</span></td></tr>
+      <tr><td><span class="en">AMG Corporate Fee</span><span class="es">Fee Corporativo AMG</span></td><td>~8%</td><td><span class="fin-tag fin-tag-other"><span class="en">FIXED %</span><span class="es">FIJO %</span></span></td><td><span class="en">Finance · DG</span><span class="es">Finanzas · DG</span></td></tr>
+      <tr><td class="fin-total"><span class="en">NET MARGIN TARGET</span><span class="es">META MARGEN NETO</span></td><td class="fin-total">~20%</td><td>—</td><td class="fin-total">Finance · Financial Advisors</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card-grid" style="margin-top:24px;">
+    <div class="card">
+      <div class="card-icon">📜</div>
+      <div class="card-title">Legal (Critical Path)</div>
+      <div class="card-body"><span class="en">Artículo 62 · Alcohol license · Civil liability insurance · PC permit · Operating permit · Outdoor seating · Trademark registration · Corporate legal structure. Zero of these can be outstanding on opening day. Legal escalates immediately if any faces a blocker.</span><span class="es">Artículo 62 · Licencia de alcohol · Seguro de responsabilidad civil · Permiso PC · Permiso de operación · Terraza exterior · Registro de marca · Estructura corporativa legal. Ninguno de estos puede estar pendiente el día de apertura. Legal escala de inmediato si alguno enfrenta un bloqueo.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧾</div>
+      <div class="card-title">Fiscal Advisors</div>
+      <div class="card-body"><span class="en">Tax structure for KK entity. AMG fee tax treatment. Invoicing system from Day 1. VAT on food vs. beverages correctly categorized. Monthly fiscal close in sync with Finance. Coordinate with Revenue for daily revenue records.</span><span class="es">Estructura fiscal para la entidad KK. Tratamiento fiscal del fee AMG. Sistema de facturación desde el Día 1. IVA en alimentos vs. bebidas correctamente categorizado. Cierre fiscal mensual en sincronía con Finanzas. Coordinar con Ingresos para registros diarios de ingresos.</span></div>
+    </div>
+  </div>
+</section>
+<div class="section-sep"></div>
+
+<!-- S09: KPIs -->
+<section class="section" id="s09">
+  <div class="section-hd">
+    <div class="section-num">09</div>
+    <div class="section-hd-text">
+      <div class="section-title"><span class="en">KPIs &amp; Quality Metrics</span><span class="es">KPIs y Métricas de Calidad</span></div>
+      <div class="section-sub"><span class="en">Shared once we open · Owned by area, reviewed weekly</span><span class="es">Se comparten al abrir · Cada métrica tiene un área dueña, revisión semanal</span></div>
+    </div>
+  </div>
+
+  <div class="insight insight-tip">
+    <div>
+      <div class="insight-label"><span class="en">✦ Principle</span><span class="es">✦ Principio</span></div>
+      <div class="insight-body"><span class="en">A KPI not tracked is a wish, not a metric. Karla owns the Monday report. Every number below target triggers a named owner and a deadline — not a discussion. First 30 days are the most important data window we will ever have.</span><span class="es">Un KPI no rastreado es un deseo, no una métrica. Karla es dueña del reporte del lunes. Cada número por debajo de la meta activa un dueño nombrado y una fecha límite — no una discusión. Los primeros 30 días son la ventana de datos más importante que jamás tendremos.</span></div>
+    </div>
+  </div>
+
+  <div class="kpi-grid" style="margin-top:32px;">
+    <div class="kpi-card">
+      <div class="kpi-name"><span class="en">Google Rating</span><span class="es">Rating Google</span></div>
+      <div class="kpi-val">4.5+</div>
+      <div class="kpi-owner"><span class="en">Within 60 days · Owner: HR/Mktg Dir · Marketing</span><span class="es">En 60 días · Resp: Dir RRHH/Mktg · Marketing</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name"><span class="en">Daily Covers</span><span class="es">Cubiertos Diarios</span></div>
+      <div class="kpi-val">60+</div>
+      <div class="kpi-owner"><span class="en">By Week 4 post-opening · Owner: Ops Dir · Ops Mgr</span><span class="es">Semana 4 post-apertura · Resp: Dir Ops · Gte Ops</span></div>
+    </div>
+    <div class="kpi-card" style="border-left-color:var(--yellow);">
+      <div class="kpi-name"><span class="en">Labor Cost (stretch)</span><span class="es">Costo Laboral (stretch)</span></div>
+      <div class="kpi-val" style="color:var(--yellow);">15–17%</div>
+      <div class="kpi-owner">of net sales · Owner: Finance</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name"><span class="en">Labor Cost (floor)</span><span class="es">Costo Laboral (piso)</span></div>
+      <div class="kpi-val">20–22%</div>
+      <div class="kpi-owner"><span class="en">of net sales · Owner: Finance · HR/Mktg Dir</span><span class="es">de ventas netas · Resp: Finanzas · Dir RRHH/Mktg</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name"><span class="en">Food Cost</span><span class="es">Costo de Alimentos</span></div>
+      <div class="kpi-val">28–32%</div>
+      <div class="kpi-owner"><span class="en">of net sales · Owner: EA · Exec Chef · Purchasing</span><span class="es">de ventas netas · Resp: EA · Chef Ejecutiva · Compras</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name"><span class="en">Net Margin Target</span><span class="es">Meta Margen Neto</span></div>
+      <div class="kpi-val">20%</div>
+      <div class="kpi-owner"><span class="en">After AMG fee · Owner: Finance · Financial Advisors</span><span class="es">Después fee AMG · Resp: Finanzas · Asesores Financieros</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name"><span class="en">Entrée Ticket Time</span><span class="es">Tiempo Plato Fuerte</span></div>
+      <div class="kpi-val">&lt;18 min</div>
+      <div class="kpi-owner"><span class="en">From order to plate · Owner: Exec Chef · Ops Dir</span><span class="es">De orden a plato · Resp: Chef Ejecutiva · Dir Ops</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name"><span class="en">First Drink Time</span><span class="es">Tiempo Primera Bebida</span></div>
+      <div class="kpi-val">&lt;5 min</div>
+      <div class="kpi-owner"><span class="en">From seated · Owner: Ops Mgr</span><span class="es">Desde sentado · Resp: Gte Ops</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name"><span class="en">Return Rate</span><span class="es">Tasa de Retorno</span></div>
+      <div class="kpi-val">30%+</div>
+      <div class="kpi-owner"><span class="en">Within 60 days · Owner: Ops Dir · HR/Mktg Dir</span><span class="es">En 60 días · Resp: Dir Ops · Dir RRHH/Mktg</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name"><span class="en">Table Turn</span><span class="es">Rotación de Mesa</span></div>
+      <div class="kpi-val">60–75 min</div>
+      <div class="kpi-owner"><span class="en">Average · Owner: Ops Dir · Ops Mgr</span><span class="es">Promedio · Resp: Dir Ops · Gte Ops</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name"><span class="en">Food Waste</span><span class="es">Desperdicio de Alimentos</span></div>
+      <div class="kpi-val">&lt;3%</div>
+      <div class="kpi-owner"><span class="en">Of purchases · Owner: Exec Chef · Purchasing · Quality</span><span class="es">De compras · Resp: Chef Ejecutiva · Compras · Calidad</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-name"><span class="en">Google Reviews</span><span class="es">Reseñas Google</span></div>
+      <div class="kpi-val">50+</div>
+      <div class="kpi-owner"><span class="en">First 30 days · Owner: Marketing · Community Mgr</span><span class="es">Primeros 30 días · Resp: Marketing · Community Mgr</span></div>
+    </div>
+  </div>
+</section>
+<div class="section-sep"></div>
+
+<!-- S10: COMPETITIVE -->
+
+
+<!-- S11: MONDAY REPORT -->
+<section class="section" id="s11">
+  <div class="section-hd">
+    <div class="section-num">11</div>
+    <div class="section-hd-text">
+      <div class="section-title"><span class="en">Government &amp; Report</span><span class="es">Gobierno y Reporte</span></div>
+      <div class="section-sub"><span class="en">Three distinct weekly reports · Progress lives in Asana</span><span class="es">Tres reportes semanales distintos · El avance vive en Asana</span></div>
+    </div>
+  </div>
+
+  <div class="insight insight-tip">
+    <div>
+      <div class="insight-label"><span class="en">✦ Report Discipline</span><span class="es">✦ Disciplina del Reporte</span></div>
+      <div class="insight-body"><span class="en">This report substitutes the DG's weekly attention. It must be complete enough that the DG asks nothing during the week. Expansion's biweekly construction report is integrated here — she provides full build detail; the Brand PM compiles everything else. <strong>Avance dual (from Asana):</strong> % of objectives closed vs. % of time elapsed. If time exceeds objectives, flag blockers immediately. KPI snapshot is included only post-opening.</span><span class="es">Este reporte sustituye la atención semanal del DG. Debe ser suficientemente completo para que el DG no pregunte nada durante la semana. El reporte quincenal de obra de Expansión se integra aquí — ella aporta el detalle completo; Karla compila todo lo demás. <strong>Avance dual (desde Asana):</strong> % de objetivos cerrados vs. % de tiempo transcurrido. Si el tiempo supera a los objetivos, se señalan bloqueadores de inmediato. KPIs solo post-apertura.</span></div>
+    </div>
+  </div>
+
+  <div class="report-template" style="margin-top:24px;">
+    <div style="color:var(--orange);font-size:14px;font-weight:600;margin-bottom:16px;letter-spacing:2px;"><span class="en">KAB KHAO — BRAND PM WEEKLY REPORT · Brand PM → EA → DG</span><span class="es">KAB KHAO — REPORTE SEMANAL DEL BRAND PM · Brand PM → EA → DG</span></div>
+    <div style="color:var(--muted);margin-bottom:16px;"><span class="en">Week: ___ · Date: ___ · Phase: ___ · Author: Brand PM → EA → DG</span><span class="es">Semana: ___ · Fecha: ___ · Fase: ___ · Autor: Brand PM → EA → DG</span></div>
+
+    <div class="report-section"><span class="en">1. PROGRESS SUMMARY</span><span class="es">1. RESUMEN DE AVANCES</span></div>
+    <div class="report-body"><span class="en">
+      What moved forward this week (max 5 items, each with: responsible, what was done, result or next step)<br>
+      · [Task/item] — [Owner] — [Status/outcome]<br>
+      · ...<br></span><span class="es">Qué avanzó esta semana (máx 5 elementos, cada uno con: responsable, qué se hizo, resultado o siguiente paso)<br>
+      · [Tarea/elemento] — [Responsable] — [Estatus/resultado]<br>
+      · ...<br></span>
+    </div>
+
+    <div class="report-section"><span class="en">2. BLOCKERS &amp; RISKS</span><span class="es">2. BLOQUEADORES Y RIESGOS</span></div>
+    <div class="report-body"><span class="en">
+      What is stuck, delayed, or at risk · Who is responsible · What is needed to unblock · Deadline<br>
+      · [Blocker] — [Owner] — [What's needed] — [Must resolve by]<br></span><span class="es">Qué está atorado, retrasado o en riesgo · Quién es responsable · Qué se necesita para desbloquear · Fecha límite<br>
+      · [Bloqueador] — [Responsable] — [Qué se necesita] — [Resolver antes de]<br></span>
+    </div>
+
+    <div class="report-section"><span class="en">3. DEPARTMENT STATUS (1 line each)</span><span class="es">3. ESTADO POR DEPARTAMENTO (1 línea cada uno)</span></div>
+    <div class="report-body"><span class="en">
+      Culinary · Legal · <strong>Construction (Expansion — full works detail)</strong> · HR · Marketing · Finance · Ops · Systems · Quality. <strong>Three distinct reports feed the system:</strong> (1) Expansion (Director) reports construction and its details; (2) the Brand PM compiles this weekly program report, which folds in Expansion's update; (3) the EA produces a filtered objectives report that crosses up to the DG — not everything, only what applies. <strong>⚠ Any area with a visible delay that could affect opening dates notifies Expansion and the DG immediately — not at the next weekly report.</strong></span><span class="es">Culinario · Legal · <strong>Obra (Expansión — detalle completo de obra)</strong> · RRHH · Marketing · Finanzas · Ops · Sistemas · Calidad. <strong>Tres reportes distintos alimentan el sistema:</strong> (1) Expansión (Director) reporta la obra y sus detalles; (2) el Brand PM compila este reporte semanal del programa, que integra el update de Expansión; (3) la EA genera un reporte filtrado de objetivos que cruza a Dirección General — no todo, solo lo que aplica. <strong>⚠ Cualquier área con atraso visible que pueda afectar las fechas de apertura notifica a Expansión y al DG de inmediato — no en el siguiente reporte semanal.</strong></span>
+    </div>
+
+    <div class="report-section"><span class="en">4. BIG WIN OF THE WEEK</span><span class="es">4. GRAN LOGRO DE LA SEMANA</span></div>
+    <div class="report-body"><span class="en">One thing that happened this week that changes the trajectory or makes the team proud.</span><span class="es">Una cosa que ocurrió esta semana que cambia la trayectoria o enorgullece al equipo.</span></div>
+
+    <div class="report-section"><span class="en">5. OBJECTIVES STATUS — each active objective, one by one</span><span class="es">5. ESTADO DE OBJETIVOS — cada objetivo activo, uno por uno</span></div>
+    <div class="report-body"><span class="en">List every active objective this phase with its state (not started / in progress / closed / blocked) + one-line note: PH_-__: ___ · PH_-__: ___ · ...</span><span class="es">Listar cada objetivo activo de la fase con su estado (no iniciado / en curso / cerrado / bloqueado) + nota de una línea: PH_-__: ___ · PH_-__: ___ · ...</span></div>
+
+    <div class="report-section"><span class="en">6. KPIs (post-opening only · shared once we open)</span><span class="es">6. KPIs (solo post-apertura · se comparten al abrir)</span></div>
+    <div class="report-body"><span class="en">Google Rating: ___ | Daily Covers avg: ___ | Labor %: ___ | Food Cost %: ___ | Net Margin: ___ | Avg Entrée Time: ___ | Return Rate: ___ | Reviews this week: ___</span><span class="es">Rating Google: ___ | Cubiertos diarios prom: ___ | % Laboral: ___ | % Costo Alimentos: ___ | Margen Neto: ___ | Tiempo Prom Plato Fuerte: ___ | Tasa de Retorno: ___ | Reseñas esta semana: ___</span></div>
+
+    <div class="report-section"><span class="en">7. DECISIONS I NEED — from DG via EA or other areas. Specific, actionable, with deadline.</span><span class="es">7. DECISIONES QUE NECESITO — del DG vía EA o de otras áreas. Específicas, accionables, con fecha límite.</span></div>
+    <div class="report-body"><span class="en">· [Decision] — [From whom] — [Needed by] · If none: "No decisions pending this week."</span><span class="es">· [Decisión] — [De quién] — [Necesaria antes de] · Si ninguna: "Sin decisiones pendientes esta semana."</span></div>
+  </div>
+</section>
+<div class="section-sep"></div>
+
+<!-- S12: TRACKER -->
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">Kab Khao</div>
+  <div class="footer-thai">กับข้าว · Thai Eatery · Dinamarca 54, CDMX</div>
+  <div class="footer-meta">
+    Brand PM: Karla Leticia Pérez &nbsp;·&nbsp; <span class="en">Executive Chef</span><span class="es">Chef Ejecutiva</span> &nbsp;·&nbsp; <span class="en">Group Strategy: DG</span><span class="es">Estrategia de Grupo: DG</span><br>
+    AMG Hospitality Group &nbsp;·&nbsp; <span class="en">Target Grand Opening: August 3, 2026 &nbsp;·&nbsp; Confidential</span><span class="es">Apertura Objetivo: 3 de Agosto, 2026 &nbsp;·&nbsp; Confidencial</span>
+  </div>
+  <div class="footer-note"><span class="en">This document is a strategic reference. All execution details, updates, and conversations live in Asana.</span><span class="es">Este documento es una referencia estratégica. Todos los detalles de ejecución, actualizaciones y conversaciones viven en Asana.</span></div>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script type="module">
+// ════════════════════════════════════════════════════════════════
+// KAB KHAO — FIREBASE REALTIME DATABASE INTEGRATION
+// ════════════════════════════════════════════════════════════════
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB9flRRnbUZ_WZyjDWHr3ux6ocMU0Zs3N0",
+  authDomain: "programakabkhao.firebaseapp.com",
+  databaseURL: "https://programakabkhao-default-rtdb.firebaseio.com",
+  projectId: "programakabkhao",
+  storageBucket: "programakabkhao.firebasestorage.app",
+  messagingSenderId: "916129769242",
+  appId: "1:916129769242:web:c95775cdd981eda527aea3"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+let localState = {}; // cache of task states from Firebase
+let suppressWrite = false; // prevent echo loops on initial load
+
+// ── LANGUAGE ─────────────────────────────────────────────────────────────────
+window.setLang = function(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  localStorage.setItem('kk_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('btn-' + lang);
+  if (btn) btn.classList.add('active');
+};
+const savedLang = localStorage.getItem('kk_lang') || 'en';
+setLang(savedLang);
+
+// ── TASK KEY ─────────────────────────────────────────────────────────────────
+function getKey(row) {
+  const list = row.parentElement;
+  const phase = list.dataset.phase;
+  const idx = Array.from(list.children).indexOf(row);
+  return `ph${phase}_${idx}`;
+}
+
+// ── TOGGLE TASK (user click) ──────────────────────────────────────────────────
+window.toggleTask = function(row) {
+  const key = getKey(row);
+  const newVal = !row.classList.contains('checked');
+  row.classList.toggle('checked', newVal);
+  localState[key] = newVal;
+  set(ref(db, 'tasks/' + key), newVal);
+  updateProgress();
+};
+
+// ── LISTEN TO FIREBASE (real-time sync) ──────────────────────────────────────
+onValue(ref(db, 'tasks'), (snapshot) => {
+  suppressWrite = true;
+  const data = snapshot.val() || {};
+  localState = data;
+  // Apply to all task rows
+  document.querySelectorAll('.task-list').forEach(list => {
+    const phase = list.dataset.phase;
+    Array.from(list.children).forEach((row, idx) => {
+      const key = `ph${phase}_${idx}`;
+      const checked = !!data[key];
+      row.classList.toggle('checked', checked);
+    });
+  });
+  updateProgress();
+  suppressWrite = false;
+});
+
+// ── PROGRESS BARS ────────────────────────────────────────────────────────────
+function updateProgress() {
+  let totalDone = 0, totalAll = 0;
+  for (let p = 1; p <= 5; p++) {
+    const list = document.querySelector(`.task-list[data-phase="${p}"]`);
+    if (!list) continue;
+    const all = list.children.length;
+    const done = list.querySelectorAll('.checked').length;
+    const pct = all ? Math.round(done / all * 100) : 0;
+    const fill = id => { const el = document.getElementById(id); if(el) el.style.width = pct + '%'; };
+    const label = id => { const el = document.getElementById(id); if(el) el.textContent = pct + '%'; };
+    fill(`bar-${p}`); fill(`t-${p}`);
+    label(`pct-${p}`); label(`p-${p}`);
+    totalDone += done; totalAll += all;
+  }
+  const overall = totalAll ? Math.round(totalDone / totalAll * 100) : 0;
+  ['t-overall','nav-bar','hero-bar'].forEach(id => {
+    const el = document.getElementById(id); if(el) el.style.width = overall + '%';
+  });
+  ['p-overall','nav-pct'].forEach(id => {
+    const el = document.getElementById(id); if(el) el.textContent = overall + '%';
+  });
+  const hl = document.getElementById('hero-label');
+  const lang = document.documentElement.getAttribute('data-lang') || 'en';
+  if(hl) hl.textContent = overall + (lang === 'es' ? '% · Objetivos marcados · Avance vive en Asana' : '% · Objectives marked · Progress lives in Asana');
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  updateProgress(); // render 0% immediately, Firebase listener will update
+});
+</script>
+</body>
+</html>
